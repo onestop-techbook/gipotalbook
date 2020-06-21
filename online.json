@@ -27,7 +27,8 @@
     "PREDEF": ["preface.re"],
     "CHAPS": [
       "chap-team-build.md",
-      "chap-concept.md"
+      "chap-concept.md",
+      "chap-buildoutline.md"
     ],
     "POSTDEF": ["contributors.re", "postscript.re"]
   }
