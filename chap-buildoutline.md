@@ -23,7 +23,7 @@ https://gijutsusyo.connpass.com/event/176664/
 
 なお、ここで使ったツールは、Figmaというもので、複数人でシェイプや文字を追加していくことができるもの。初めて知りましたが便利ですね。
 
-![トップページ]](chap-buildoutline/TopPage.png?scale=0.5)
+![トップページ](chap-buildoutline/TopPage.png?scale=0.5)
 
 トップページには、イベントやタグの一覧、また今後あと開催されるピックアップイベントなどが表示される予定です。現時点ではかなりシンプルですが、トップページに必要な項目というのは案外少ないかもしれません。
 
@@ -33,7 +33,7 @@ https://gijutsusyo.connpass.com/event/176664/
 
 そして、サークルのページのワイヤフレームが次に作られました。
 
-![サークルページ]](chap-buildoutline/circlePage.png?scale=0.5)
+![サークルページ](chap-buildoutline/circlePage.png?scale=0.5)
 
 サークル名、公式ページやBoothなどへのリンク、サークル紹介が入ります。
 
@@ -49,7 +49,7 @@ https://gijutsusyo.connpass.com/event/176664/
 という目的があるためです。イベント単位でのチェックや新刊チェックに有効に働くでしょう。また、大型アップデートなどにより、過去の情報の鮮度、有効性が落ちることも考えられます。これらを一目で見れるような頒布物登録としています。
 
 
-![ジャンル・トピックスページ]](chap-buildoutline/topicsPage.png?scale=0.5)
+![ジャンル・トピックスページ](chap-buildoutline/topicsPage.png?scale=0.5)
 
 つづいては、ジャンルごとのページです。ここはタグごとに本をまとめています。本の紹介自体はサークルページに載っているものと同じです。(ただしサークル名がわかるように、本の下にサークル名が明記してあります。)
 
