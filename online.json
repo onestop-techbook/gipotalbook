@@ -26,9 +26,10 @@
   "catalog": {
     "PREDEF": ["preface.re"],
     "CHAPS": [
-      "chap-team-build.md",
       "chap-concept.md",
-      "chap-buildoutline.md"
+      "chap-buildoutline.md",
+      "chap-1stmob.md"
+
     ],
     "POSTDEF": ["contributors.re", "postscript.re"]
   }
