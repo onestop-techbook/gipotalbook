@@ -28,7 +28,8 @@
     "CHAPS": [
       "chap-concept.md",
       "chap-buildoutline.md",
-      "chap-1stmob.md"
+      "chap-1stmob.md",
+      "chap-mob-june11.md"
 
     ],
     "POSTDEF": ["contributors.re", "postscript.re"]
