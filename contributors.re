@@ -36,9 +36,6 @@
 
 == 執筆者
 
-
-　
-
 //embed{
     \begin{minipage}{.1\linewidth}
         \centering
@@ -84,20 +81,6 @@ Podcast生やすお兄さんとして、複数のPodcastを掛け持ちして配
 
 　
 
-//embed{
-    \begin{minipage}{.1\linewidth}
-        \centering
-        \includegraphics[width=.75\linewidth]{images/contributors/hekitter_400x400.jpg}
-    \end{minipage}
-    \begin{minipage}{.89\linewidth}
-        hekitter @hekitter https://twitter.com/hekitter\\
-        \end{minipage}
-    \hspace{1ex}
-//}
-SIerの何でも屋さんから、何となくやりたいことに出会えた人。ぼちぼち落ち着きそうなので、楽しいこと増やすぞいと思った矢先にこの状況なので、書いて発散しました。
-
-　
-
 
 //embed{
     \begin{minipage}{.1\linewidth}
@@ -111,68 +94,6 @@ SIerの何でも屋さんから、何となくやりたいことに出会えた�
     \hspace{1ex}
 //}
 フリーランスでウェブフロントエンドを中心にエンジニアリングをやっています。4年ほどリモート中心で働いていたら、いきなりリモートワークが推奨される社会になってびっくりしています。
-
-
-
-　
-
-//embed{
-    \begin{minipage}{.1\linewidth}
-        \centering
-        \includegraphics[width=.75\linewidth]{images/contributors/Soya_400x400.jpg}
-    \end{minipage}
-    \begin{minipage}{.89\linewidth}
-        Soya @thisIsSow https://twitter.com/thisIsSow\\
-        \end{minipage}
-    \hspace{1ex} 
-//}
-新米ハードウェアエンジニアです。おうち時間で積読中の技術同人誌を読み進めようとしていた矢先、寄稿させていただくことになりとにかく驚いています！
-
-
-
-　
-
-//embed{
-    \begin{minipage}{.1\linewidth}
-        \centering
-        \includegraphics[width=.75\linewidth]{images/contributors/ebichiki_400x400.jpg}
-    \end{minipage}
-    \begin{minipage}{.89\linewidth}
-        えびちき https://twitter.com/ebichiki\\
-        \end{minipage}
-    \hspace{1ex}
-//}
-IT企業で働くママエンジニアです。最近の楽しみはオンライン勉強会に参加すること。子持ちには参加しやすくてありがたいですね。　　
-
-　
-
-//embed{
-    \begin{minipage}{.1\linewidth}
-        \centering
-        \includegraphics[width=.75\linewidth]{images/contributors/sapi_kawahara.png}
-    \end{minipage}
-    \begin{minipage}{.89\linewidth}
-        さっぴー川原 @sapi\_kawahara\\ https://twitter.com/sapi\_kawahara\\
-                \end{minipage}
-    \hspace{1ex}
-//}
-相変わらずの放浪のITエンジニアしております！最近はRuby言語で開発しております！
-社会インフラについては趣味で見守るだけです。特別定額給付金は申請済み！
-Twitterでも適当に絡んでください、よろしくおねがいします！
-
-　
-
-//embed{
-    \begin{minipage}{.1\linewidth}
-        \centering
-        　
-    \end{minipage}
-    \begin{minipage}{.89\linewidth}
-        せとあず @setazusa https://hiroyuki.fieldnotes.jp/\\
-        \end{minipage}
-    \hspace{1ex} %コメントとアイコンの間を空けて体裁を整える
-//}
-マネージャーになったのだがやっていることはメンテナンス作業とかAnsibleやTerraformの面倒とか。マネジメントとは…
 
 　
 
