@@ -127,5 +127,5 @@ http://ID.github.io/repositoryでアクセスできるはずです。Webブラ�
 
 ![2回目モブワーク(6月11日)のふりかえりFan Done Learn](chap-mob-june11/0611fandonelearn.png?scale=0.5)
 
-![2回目モブワーク(6月11日)のNest Work](chap-mob-june11/06111nextstep.png?scale=0.5)
+![2回目モブワーク(6月11日)のNest Work](chap-mob-june11/0611nextstep.png?scale=0.5)
 
