@@ -12,7 +12,7 @@
 ナビゲーションに従って進めればドメインが取れます。
 
 取得が完了したら、管理画面からきちんととれていることを確認し、ニヤニヤすることができます。
-![ドメイン管理画面で確認する](chap-mob-june11/domain.png?scale=0.5)
+![ドメイン管理画面で確認する](chap-mob-june11/domain.png?scale=0.8)
 
 ### Whois代行について
 唯一ケアした方が良いのが、Whoisの扱いです。
@@ -24,7 +24,7 @@
 
 そこで、設定により非表示とすることができます。
 
-![非表示設定](chap-mob-june11/whoissetting.png?scale=0.5)
+![非表示設定](chap-mob-june11/whoissetting.png?scale=0.8)
 
 上方にある、Whois登録者情報非表示設定　を有効にしましょう。
 
@@ -43,7 +43,7 @@
 とわかりやすく説明書きをしてほしいものです。
 
 
-![Whois公開代行ができている例](chap-mob-june11/whois.png?scale=0.5)
+![Whois公開代行ができている例](chap-mob-june11/whois.png?scale=0.8)
 
 代行設定および非公開設定を行うことで、本名非公開、窓口は運営会社という形に変更できます。
 
@@ -54,7 +54,7 @@
 
 その間に、なべくらさんがトップ画像のラフを作ってくれていました。
 
-![トップ画像ラフ](chap-mob-june11/roughillust.png?scale=0.25)
+![トップ画像ラフ](chap-mob-june11/roughillust.png?scale=0.75)
 
 頒布ブースを準備する子と、泣きながら執筆している子がいい感じです。あ、本当の技術同人誌はみんな楽しんで書いてますからね？これは頑張って書いているからちょっと汗が出ているだけです。また、できあがったイラストは公式で見てくださいね。
 
@@ -103,9 +103,9 @@ $ git pull origin master
 次に、GithubPagesの設定です。
 リポジトリのSettingsから、Sourceを設定します。Settingsの下の方、Danger Zoneの上です。
 
-![GitHubPagesの設定をする](chap-mob-june11/ghpagessetting.png?scale=0.5)
+![GitHubPagesの設定をする](chap-mob-june11/ghpagessetting.png?scale=0.8)
 
-![プルダウンメニューから設定](chap-mob-june11/pulldownmenu.png?scale=0.5)
+![プルダウンメニューから設定](chap-mob-june11/pulldownmenu.png?scale=0.8)
 
 初期設定ではnoneになっていますので、これをmaster branchまたはmaster brach /docs folderに設定することで設定できるようになります。
 
@@ -123,8 +123,8 @@ http://ID.github.io/repositoryでアクセスできるはずです。Webブラ�
 
 今回もふりかえりはFan Done Learnです。
 
-![2回目モブワーク(6月11日)のふりかえりFan Done Learn](chap-mob-june11/0611fandonelearn.png?scale=0.5)
+![2回目モブワーク(6月11日)のふりかえりFan Done Learn](chap-mob-june11/0611fandonelearn.png?scale=1.0)
 
-![2回目モブワーク(6月11日)のNest Work](chap-mob-june11/0611nextstep.png?scale=0.5)
+![2回目モブワーク(6月11日)のNest Work](chap-mob-june11/0611nextstep.png?scale=0.8)
 
 

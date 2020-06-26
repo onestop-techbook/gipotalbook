@@ -14,7 +14,7 @@
 https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site
 にIPアドレス、他の設定が書いてあります。
 
-![DNSレコードの設定](chap-mob-0614/dnsrecord.png?scale=0.5)
+![DNSレコードの設定](chap-mob-0614/dnsrecord.png?scale=0.8)
 
 * CNAMEを設定する
 /docs/CNAMEというファイルを作り、ここにgipotal.jpと記入します。
@@ -26,6 +26,6 @@ https://help.github.com/en/github/working-with-github-pages/managing-a-custom-do
 
 ついでに、HTTPS強制の設定もあるので、チェックを入れます。
 
-![GithubPagesへの設定とHTTPS化](chap-mob-0614/settingfinish.png?scale=0.5)
+![GithubPagesへの設定とHTTPS化](chap-mob-0614/settingfinish.png?scale=0.8)
 
 上に、設定したドメインで公開されたよ！というメッセージが表示されていること、そこをクリックしたらちゃんと表示されることを確認して、設定は終了です。
