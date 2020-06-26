@@ -99,5 +99,32 @@ $ git pull origin master
 ですが、必ずしもgh-pagesというブランチでなくとも公開できるそうなので、Masterにフォルダを作ってやることになりました。
 #### [/column]
 
+### GitHubPagesの設定
+次に、GithubPagesの設定です。
+リポジトリのSettingsから、Sourceを設定します。Settingsの下の方、Danger Zoneの上です。
+
+![GitHubPagesの設定をする](chap-mob-june11/ghpagessetting.png?scale=0.5)
+
+![プルダウンメニューから設定](chap-mob-june11/pulldownmenu.png?scale=0.5)
+
+初期設定ではnoneになっていますので、これをmaster branchまたはmaster brach /docs folderに設定することで設定できるようになります。
+
+http://ID.github.io/repositoryでアクセスできるはずです。Webブラウザから確認してみてみましょう。index.hmtlの中身が見えれば成功です。
+
+なお、今回の設定では、/docsをドキュメントルートにしました。したがって、この配下に置いたものは相対パスで参照できます。
+
+
+## トップページ(工事中)をモブで作る
+ここはHTMLコーディングの話。あとで書く。
+
+## 2回目のモブ(6/11)のふりかえり
+
+今回の成果は、仮トップの工事中ページを作ったこと、GithubPagesで公開できたこと、ドメイン取得したことです。
+
+今回もふりかえりはFan Done Learnです。
+
+![2回目モブワーク(6月11日)のふりかえりFan Done Learn](chap-mob-june11/0611fandonelearn.png?scale=0.5)
+
+![2回目モブワーク(6月11日)のNest Work](chap-mob-june11/0611nextstep.png?scale=0.5)
 
 
