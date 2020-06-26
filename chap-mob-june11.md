@@ -96,11 +96,11 @@ $ git branch
 master gh-pages
 $ git pull origin master
 
-ですが、必ずしもgh-pagesというブランチでなくとも公開できるそうなので、Masterにフォルダを作ってやることになりました。
+ですが、必ずしもgh-pagesというブランチでなくとも公開できるそうなので、masterにフォルダを作ってやることになりました。
 #### [/column]
 
-### GitHubPagesの設定
-次に、GithubPagesの設定です。
+### GitHub Pagesの設定
+次に、GitHub Pagesの設定です。
 リポジトリのSettingsから、Sourceを設定します。Settingsの下の方、Danger Zoneの上です。
 
 ![GitHubPagesの設定をする](chap-mob-june11/ghpagessetting.png?scale=0.8)
@@ -119,7 +119,7 @@ http://ID.github.io/repositoryでアクセスできるはずです。Webブラ�
 
 ## 2回目のモブ(6/11)のふりかえり
 
-今回の成果は、仮トップの工事中ページを作ったこと、GithubPagesで公開できたこと、ドメイン取得したことです。
+今回の成果は、仮トップの工事中ページを作ったこと、GitHub Pagesで公開できたこと、ドメイン取得したことです。
 
 今回もふりかえりはFan Done Learnです。
 
