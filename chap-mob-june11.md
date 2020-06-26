@@ -75,7 +75,16 @@ LiveShareは共有URLをクリックするだけで使えます。プラグイ�
 ## 工事中ページをGithubPagesに作る
 それでは、モブワーク開始です。今日はモブワークでコーディングが主体だったので、Mural上の内容は少な目です。参加者の確認、今日やること、できたもののスクショを成果物として共有する3カラムのみです。
 
-まずは、GithubにGithubPagesを作ります。
+###　ダミーページを作る
+
+まずは、Githubのリポジトリにダミーのhtmlを作ります。これがないと、外から見てちゃんと設定できているのかがわかりません。
+
+$ mkdir docs
+を作って、その中にindex.htmlを作ります。真っ白だとなにがなんだかわからないので、Hello.Worldとでも書いておくとよいでしょう。これをPushします。
+
+なお、今回の設定では、/docsをドキュメントルートにしました。したがって、この配下に置いたものは相対パスで参照できます。
+
+あとは、このindex.htmlを改造すればいかようにでもできますね。
 
 #### [column] gh-pagesを使ってもできるらしいがやらなかった
 当該リポジトリにgh-pagesというブランチを切ってPushするだけ、という雑な説明から始まります。
@@ -90,11 +99,33 @@ $ git pull origin master
 ですが、必ずしもgh-pagesというブランチでなくとも公開できるそうなので、Masterにフォルダを作ってやることになりました。
 #### [/column]
 
-$ mkdir docs
-を作って、その中にHello.Worldを作ってPushします。
 
+
+### GitHubPagesの設定
 次に、GithubPagesの設定です。
 リポジトリのSettingsから、Sourceを設定します。Settingsの下の方、Danger Zoneの上です。
 
 ![GitHubPagesの設定をする](chap-mob-june11/ghpagessetting.png?scale=0.5)
+
+![プルダウンメニューから設定](chap-mob-june11/pulldown.png?scale=0.5)
+
+初期設定ではnoneになっていますので、これをmaster branchまたはmaster brach /docs folderに設定することで設定できるようになります。
+
+http://ID.github.io/repositoryでアクセスできるはずです。Webブラウザから確認してみてみましょう。index.hmtlの中身が見えれば成功です。
+
+なお、今回の設定では、/docsをドキュメントルートにしました。したがって、この配下に置いたものは相対パスで参照できます。
+
+
+## トップページ(工事中)をモブで作る
+ここはHTMLコーディングの話。あとで書く。
+
+## 2回目のモブ(6/11)のふりかえり
+
+今回の成果は、仮トップの工事中ページを作ったこと、GithubPagesで公開できたこと、ドメイン取得したことです。
+
+今回もふりかえりはFan Done Learnです。
+
+![2回目モブワーク(6月11日)のふりかえりFan Done Learn](chap-mob-june11/0611fandonelearn.png?scale=0.5)
+
+![2回目モブワーク(6月11日)のNest Work](chap-mob-june11/06111nextstep.png?scale=0.5)
 
