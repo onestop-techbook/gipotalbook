@@ -96,14 +96,15 @@ $ git branch
 master gh-pages
 $ git pull origin master
 
-ですが、必ずしもgh-pagesというブランチでなくとも公開できるそうなので、Masterにフォルダを作ってやることになりました。
+ですが、必ずしもgh-pagesというブランチでなくとも公開できるそうなので、Masterにフォルダを作ってやることになりました。使わなかったけど、gitのコマンドも覚えられて便利！
+
 #### [/column]
 
 ### GitHubPagesの設定
-次に、GithubPagesの設定です。
+次に、GitHub Pagesの設定です。
 リポジトリのSettingsから、Sourceを設定します。Settingsの下の方、Danger Zoneの上です。
 
-![GitHubPagesの設定をする](chap-mob-0611/ghpagessetting.png?scale=0.8)
+![GitHub Pagesの設定をする](chap-mob-0611/ghpagessetting.png?scale=0.8)
 
 ![プルダウンメニューから設定](chap-mob-0611/pulldownmenu.png?scale=0.8)
 
@@ -111,7 +112,7 @@ $ git pull origin master
 
 http://ID.github.io/repositoryでアクセスできるはずです。Webブラウザから確認してみてみましょう。index.hmtlの中身が見えれば成功です。
 
-なお、今回の設定では、/docsをドキュメントルートにしました。したがって、この配下に置いたものは相対パスで参照できます。
+なお、今回の設定では、/docsをドキュメントルートにしました。したがって、画像などもこの配下に置いていきます。
 
 
 ## トップページ(工事中)をモブで作る
@@ -127,4 +128,4 @@ http://ID.github.io/repositoryでアクセスできるはずです。Webブラ�
 
 ![2回目モブワーク(6月11日)のNest Work](chap-mob-0611/0611nextstep.png?scale=0.8)
 
-
+今回も2時間ほどでのワークで区切りの良いところまで進捗を出し、さらにNext Action、ふりかえりを含めて完了しました。知識スキルに差があるチームにおいてモブワークは全体スキルの底上げには非常に有効だと感じます。確かにできる人が一人でやれば半分の時間でできるような内容かもしれません。今回のワークでも特別に技術がいるようなことはほとんどありません。できる人なら一人でできるかもしれません。しかしそれを全員でやることで、知識の濃淡の薄いところを他の人からもらいながら、自分の濃いところをみんなに伝播させることができるすばらしい方法だと改めて感じました。
