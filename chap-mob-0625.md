@@ -52,4 +52,4 @@ HEAD, 今回は使わなかったHEAD^は、直前、そしてその前のコミ
 
 MURALの無料期間というのに気づき、一旦解決ソリューションを見つけたなどが成果ですね。
 
-![6月25日のFan Done Learn](chap-mob-0625/0625fandonelearnn.png?scale=1.0)
+![6月25日のFan Done Learn](chap-mob-0625/0625fandonelearn.png?scale=1.0)
