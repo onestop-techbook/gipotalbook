@@ -33,7 +33,8 @@
       "chap-mob-0614.md",
       "chap-mob-0618.md",
       "chap-mob-0625.md",
-      "chap-mob-0702.md"
+      "chap-mob-0702.md",
+      "chap^mob-0704.md"
 
     ],
     "POSTDEF": ["contributors.re", "postscript.re"]
