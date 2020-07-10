@@ -65,8 +65,102 @@ index.module.css
 ## Hasuraを組み込む
 目標の二つ目が、DB項目少な目でやってみることにします。適当なデータを引っ張ってくるのをテストします。Next.jsにHasuraをどうやって仕込むのかを調べながらやるのです。
 
-Hasura Clowdは結構高額なので、別に立てます。Hasuraha、クラウドサービスにも見えますが、Container、その他で動かせるオープンソースのツールです。なので、Hasuraのチュートリアルをやりながら動かしてみます。
+Hasura Clowdは結構高額なので、別に立てます。Hasuraha、クラウドサービスにも見えますが、Container、その他で動かせるオープンソースのツールです。なので、まずはHasuraのチュートリアルをやりながら動かしてみます。
 
-そもそもHasuraとはから始まります。GraphQLという
+そもそもHasuraとはなにか、Hasura.ioは何ができるか？というところから共有が始まります。これは、GraphQLというクエリランゲージでデータベースへの問い合わせができるツールです。
 
-DockerコマンドでHasuraを立ち上げます。
+以下の模擬コードでの説明です。一般的なWebAPIでは、それぞれの情報を問い合わせるAPIのURLがあり、そこに問い合わせることでデータをとってこれます。
+
+うれしさとして、わかりやすいところでは、Autherを取りたいと思ったとき、Auther自体がネスト構造を持ちます。例えば、名前とか、アバターURL、TwitterURLなどです。これを実現するために、RESTでやるためには、AutherURLをたたいた後に別のURLをたたいたり、複数のアクセスが必要になります。
+
+
+```
+// REST URL
+const indexUrl = 'https://api.exmaple.com/api/v1/books'
+const showUrl = 'https://api.exmaple.com/api/v1/books/12'
+const showUrlLight = 'https://api.exmaple.com/api/v1/books/12/light'
+const authorUrl = 'https://api.exmaple.com/api/v1/authors/12'
+const graphqlUrl = 'https://api.example.com/api/graphql'
+// Request
+// {
+//   books {
+//     title
+//     price
+//   }
+// }
+// {
+//   book {
+//     title
+//     price
+//     description
+//     author {
+//       name
+//       avatarUrl
+//       twitterUrl
+//     }
+//   }
+// }
+// Result
+const result = [{
+  title: 'ワンストップバックアップ',
+  price: 100,
+  author: {
+    name: '親方Project',
+    avatorUrl: 'https://...',
+    twitterUrl: 'https://...'
+  }
+}, {
+  title: 'ワンストップバックアップ',
+  price: 100,
+},
+]
+```
+
+これに対し、GraphQLであれば、取りたい情報だけをRequestとして指定できるので、シンプルにデータを取得することができます。
+
+通常はAppoloというバックエンドとフロントエンドの中間を買いするBFFを立てて、GraphQLを立てますが、Hasuraの利点は、直接DBにアクセスすることができ、GraphQLとDBをいい感じにつなぎこんでくれるシステムです。
+
+有料のHasuraのサーバーを使ってもよいし、Dockerを使って手元でPostgreSQLと一緒に立ち上げることもできます。ですから、一旦手元で動かしてみることにします。
+
+Quick start with dockerというチュートリアルがあるので、これを使います。
+
+https://hasura.io/docs/1.0/graphql/manual/getting-started/docker-simple.html
+
+Tech-book-portalのルートで問題なさそうなので、ここで動かします。
+
+```
+wget https://raw.githubusercontent.com/hasura/graphql-engine/stable/install-manifests/docker-compose/docker-compose.yaml
+
+または
+
+curl https://raw.githubusercontent.com/hasura/graphql-engine/stable/install-manifests/docker-compose/docker-compose.yaml -o docker-compose.yml
+
+$ docker-compose up -d
+
+$ docker ps
+起動していることを確認。
+
+```
+
+http://localhost:8080/consoleを開くと、HasuraのConsoleが開きます。
+
+#### [column] Window10でDockerでたてたはずのConsoleが開けない
+Windows10(Home)でHasura.ioのDocker composeをやってみたところ、動いているはずなのにConsoleにアクセスできないという現象が発生しました。
+
+Windows Firewallを切ってみましたがダメ。結果としては、Virtual Machineのポート変換ができていないということがわかりました。
+
+参考ページ：https://teratail.com/questions/151484
+
+VirtualBoxを使っていたので、VirtualBoxマネージャの設定>ネットワーク→高度→ポートフォワーディングでルールを追加します。
+
+
+![VMネットワーク設定](chap-mob-0704/VMportsetting1.png?scale=0.8)
+
+![ポートフォワーディングの追加](chap-mob-0704/VMportsetting2.png?scale=0.8)
+
+親OSのポート←VMのポート←Dockerのポートのような構造になっているようで、ポートフォワーディングの設定が必要なようです。
+
+ということは、Dockerで別のツールを使うたびに、必要に応じて追加しなきゃいけないようですね。
+
+#### [/column]
+
