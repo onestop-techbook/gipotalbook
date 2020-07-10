@@ -18,7 +18,7 @@
 #@#//}
 #@# ここに一言コメントを書く
 
-== 発起人/編集
+== 発起人/ギポタル本執筆
 
 　
 //embed{
@@ -34,7 +34,25 @@
 //}
 ワンストップ本シリーズ企画・編集（一部執筆）してます。コミケと技術書典に出没。ついに技術書同人誌博覧会（技書博）のコアスタッフとして運営側に参加。技術書イベントが増えて嬉しいけれど、イベント多すぎて外出チケットと徳が不足気味。徳を貯めるべく、家事をこなしつつ、ラボに遊びに行ったり、飲み会や懇親会で著者を新規開拓したり。著者募集はいつでもやってまうすので、ぜひご参加ください。
 
-== 執筆者
+== ギポタル開発
+
+//embed{
+    \begin{minipage}{.1\linewidth}
+        \centering
+        \includegraphics[width=.75\linewidth]{images/contributors/kane_400x400.png}
+    \end{minipage}
+    \begin{minipage}{.89\linewidth}
+        KANE @higuyume https://twitter.com/higuyume\\
+        サークル名： growthfaction
+        \end{minipage}
+    \hspace{1ex}
+//}
+人の力で世界を便利にする企業で働いているWebディレクター
+Podcast生やすお兄さんとして、複数のPodcastを掛け持ちして配信をしています。
+
+
+　
+
 
 //embed{
     \begin{minipage}{.1\linewidth}
@@ -63,21 +81,24 @@ BtoB向けSaaSのバックエンド開発をしているITエンジニア。Twit
 //}
 締め切りが…。ああ、窓に！窓に！（だいたいいつも、締切でSAN値がピンチ）
 
+
 　
 
 //embed{
     \begin{minipage}{.1\linewidth}
         \centering
-        \includegraphics[width=.75\linewidth]{images/contributors/kane_400x400.png}
+        \includegraphics[width=.75\linewidth]{images/contributors/nabekura_400x400.jpg}
     \end{minipage}
     \begin{minipage}{.89\linewidth}
-        KANE @higuyume https://twitter.com/higuyume\\
-        サークル名： growthfaction
+        なべくら @nabe\_\_kurage https://twitter.com/nabe\_\_kurage/\\
+        サークル名：たぬてっく
         \end{minipage}
     \hspace{1ex}
 //}
-人の力で世界を便利にする企業で働いているWebディレクター
-Podcast生やすお兄さんとして、複数のPodcastを掛け持ちして配信をしています。
+なべくらなべくら
+
+
+
 
 　
 
@@ -112,38 +133,14 @@ Podcast生やすお兄さんとして、複数のPodcastを掛け持ちして配
 あと、近畿青年技術士懇親会 http://seigikon.jp\\ って勉強会の幹事をさせていただいています。
 資格は10種以上もってますね。色々あったんですよ…　いやほんと。
 
-　
-
-//embed{
-    \begin{minipage}{.1\linewidth}
-        \centering
-        \includegraphics[width=.75\linewidth]{images/contributors/gomana2_400x400.jpg}
-    \end{minipage}
-    \begin{minipage}{.89\linewidth}
-       ごまなつ @akrolayer https://twitter.com/akrolayer\\
-        \end{minipage}
-    \hspace{1ex}
-//}
-メーカセカンダリでWindowsアプリ作ってる人。最近はノートに考えていることを書いてます。podcastもやってたりする。
-趣味はゲーム全般。キーボード入力最適化に燃えてます。在宅になっても、趣味を諦めないことが直近の目標。
-
+あとおにぎりさんも書いてもらわないとー
 
 == 表紙イラスト・デザイン　
 
-//embed{
-    \begin{minipage}{.1\linewidth}
-        \centering
-        \includegraphics[width=.75\linewidth]{images/contributors/llminatoll_400x400.jpg}
-    \end{minipage}
-    \begin{minipage}{.89\linewidth}
-        湊川あい @llminatoll https://twitter.com/llminatoll\\
-        サークル名：湊川あいの、わかば家。 https://note.com/llminatoll
-        \end{minipage}
-    \hspace{1ex}
-//}
-湊川あいです。今回も表紙イラストを担当させていただきました。親方さんから「タイムリーな話だから早く出したい」とご依頼いただいて、なんとその24時間後にはイラストが完成しました！
+なべくらなべくら
 
-こういうのは早さが大事……自分の原稿も頑張ります。（盛大なブーメラン）
+
+役割ごとにタグ作るもアリかな。
 #@# この上に追記するといい感じになります。明示的な全角空白があるので、忘れずに。
 
 #@#改行されない，hspace効かない，@<br>{}ではエラーがでるので，全角スペースで空の行を入れている
