@@ -148,7 +148,10 @@ $ docker ps
 
 ```
 
-http://localhost:8080/consoleを開くと、HasuraのConsoleが開きます。
+http://localhost:8080/consoleを開くと、HasuraのConsoleが開きます。開けば成功です。
+
+![Hasura Console](chap-mob-0704/hasuraconsole.png?scale=0.5)
+
 
 #### [column] Window10でDockerでたてたはずのConsoleが開けない
 Windows10(Home)でHasura.ioのDocker composeをやってみたところ、動いているはずなのにConsoleにアクセスできないという現象が発生しました。
@@ -169,4 +172,144 @@ VirtualBoxを使っていたので、VirtualBoxマネージャの設定>ネッ�
 ということは、Dockerで別のツールを使うたびに、必要に応じて新しいポートの設定を追加しなきゃいけないようですね。
 
 #### [/column]
+
+次は、模擬データを作ってみます。
+
+上部のリボンから、DATAを開き、Shemaの隣のCreate tableを選択します。
+
+コード化もできるみたいですが、とりあえずはGUI上で作ってみます。
+
+Table Namesがキーになる名称です。
+
+Columnsにいくつかキーを追加していきます。
+
+ID　Integer
+User Text
+と入れ、Add　Tableをクリックします。これで「箱」ができました。
+
+左のカラムにtable(1) > profileと今作ったテーブルが追加されました。
+![テーブルの作成](chap-mob-0704/createtable.png?scale=0.8)
+
+とりあえずは、データを追加してみましょう。
+
+Insert Rowから、IDとNameを入力し、Saveます。型に合わない場合はエラーが返るので修正します。
+
+![データの入力](chap-mob-0704/insertrow.png?scale=0.8)
+
+
+Browse Rows()から中身の確認が可能です。データ数により後ろの数字は異なります。
+
+![入力データの確認](chap-mob-0704/browserow.png?scale=0.8)
+
+ここまでやったら、次はいよいよQueryを作ってデータの呼び出しを確認します。
+
+GRAPHQLをクリックし、queryを作ります。
+
+```sql
+query {
+  profile {
+    id
+    name
+  }
+}
+```
+
+そして、再生ボタンを押すと、queryが走って、保存したデータが呼び出されます。
+
+```sql
+{
+  "data": {
+    "profile": [
+      {
+        "ID": 1,
+        "Name": "なべくら"
+      },
+      {
+        "ID": 2,
+        "Name": "KANE"
+      },
+      {
+        "ID": 3,
+        "Name": "おやかた"
+      }
+    ]
+  }
+}
+```
+![GraphQLが動いた](chap-mob-0704/graphql.png?scale=0.8)
+
+めでたしめでたし。Hasuraはすごいですね。
+
+これがソースコード上から呼べると目的の大部分が達せたことになるでしょう。
+
+### Reactから呼び出す
+ReactのチュートリアルにGraphQLでの呼び出しについての記載があります。
+
+https://hasura.io/learn/graphql/react/apollo-client/
+
+Set up a GraphQL client with Apolloという章があるので、ここをやってみます。
+
+```sh
+$ npm install apollo-boost @apollo/react-hooks graphql
+```
+
+
+でApolloをインストールします。
+
+インストールしている間に、フロントとバックのつなぎ込み職人技が必要なくなりそうです。インフラと設計ができる人が一人いれば、フロントさえいれば完結する未来があるかもしれないねー、といった話が出てきます。きわめて大規模なものはともかく、スタートアップなら全く問題なく動くでしょうし、非常に簡単にできるように思います。
+
+src/pages/index.js に以下のコードを追加します。
+
+```js
+ import ApolloClient from 'apollo-client';
+ import { InMemoryCache } from 'apollo-cache-inmemory';
+ import { HttpLink } from 'apollo-link-http';
+ import { ApolloProvider } from '@apollo/react-hooks';
+
+ const createApolloClient = () => {
+ return new ApolloClient({
+   link: new HttpLink({
+     uri: 'http://localhost:8080/v1/graphql',
+   }),
+   cache: new InMemoryCache(),
+ });
+};
+```
+読み込みの部分は、profile.jsに外だししておきます。これは、類似の内容を他のページでも利用するのと、Indexが複雑になりすぎるのを避けるためです。
+
+```js
+import gql from 'graphql-tag';
+import {useQuery} from '@apollo/react-hooks';
+
+// クエリ
+const OUR_FIRST_QUERY = gql`
+ query {
+   profile {
+     id
+     name
+   }
+ }
+`;
+
+const Profiles = () => {
+ const { loading, error, data } = useQuery(OUR_FIRST_QUERY)
+ // ローディング中の表示
+ if (loading) return <p>loading</p>
+ // エラー時の表示
+ if (error) return <p>{error.toString()}</p>
+ //　成功してデータが帰ってきた時の表示
+ return <div>
+   {
+     data.profile.map(profile => <Profile key={profile.id} profile={profile}/>)
+   }
+ </div>
+}
+```
+
+クエリにより、保存したデータを表示することができました。大幅進捗！
+
+## まとめ
+恒例のFan Done Learnにも若干かぶりますが、今日のやったことです。
+
+![本日やったこと](chap-mob-0704/done.png?scale=0.8)
 
