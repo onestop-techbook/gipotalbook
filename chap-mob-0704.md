@@ -32,9 +32,9 @@ $ npm rum dev
 
 表示されることを確認したら、index.jsを適当に整理するとよいでしょう。
 
-Mainの中が現在表示しているものなので、Main の中を消してしまえば
+Mainの中が現在表示しているものなので、Main の中を書き換えれば任意に書き換えできます。
 
-StyleやFooterの中身も不要なので消してしまいます。Styleの直書きなどの話も出てくるのですが、一旦置いておきます。Style消すと、Styleが当たらなくなるので、中央寄せから、左上に寄ることになります。
+StyleやFooterの中身も不要なので消してしまいます。Styleの直書きなどの話も出てくるのですが、一旦わきにおいておきます。Styleを全消しすると、Styleが当たらなくなるので、中央寄せから、左上に寄ることになりますので、一旦全消しして確認します。
 
 cssを外出しするには、index.cssを作り、これをインポートします。
 
@@ -71,8 +71,7 @@ Hasura Clowdは結構高額なので、別に立てます。Hasuraha、クラウ
 
 以下の模擬コードでの説明です。一般的なWebAPIでは、それぞれの情報を問い合わせるAPIのURLがあり、そこに問い合わせることでデータをとってこれます。
 
-うれしさとして、わかりやすいところでは、Autherを取りたいと思ったとき、Auther自体がネスト構造を持ちます。例えば、名前とか、アバターURL、TwitterURLなどです。これを実現するために、RESTでやるためには、AutherURLをたたいた後に別のURLをたたいたり、複数のアクセスが必要になります。
-
+ところが、項目が増えたり、関連する要素が増えると、何回もAPIをたたいたり、中間テーブルを作ったりする必要が出てきます。たとえば、Auther自体がネスト構造を持つという特徴を考えます。例えば、Autherの要素として、名前とか、アバターURL、TwitterURLなどが存在します。これを取得するために、RESTでやる場合には、AutherURLをたたいた後に別のURLをたたいたり、複数回のアクセスが必要になります。
 
 ```
 // REST URL
@@ -118,7 +117,11 @@ const result = [{
 
 これに対し、GraphQLであれば、取りたい情報だけをRequestとして指定できるので、シンプルにデータを取得することができます。
 
-通常はAppoloというバックエンドとフロントエンドの中間を買いするBFFを立てて、GraphQLを立てますが、Hasuraの利点は、直接DBにアクセスすることができ、GraphQLとDBをいい感じにつなぎこんでくれるシステムです。
+通常はAppoloというバックエンドとフロントエンドの中間を媒介するBFFを立てて、GraphQLを作ります、これに対してのHasuraの利点は、直接DBにアクセスすることができ、GraphQLとDBをいい感じにつなぎこんでくれるシステムであるところです。項目の増減もRequestの項目をいじるだけでよくなります。
+
+ある意味では、データベース構造に寄らないデータの扱いが可能になるともいえるかもしれません。
+
+### Hasura.ioを動かしてみる
 
 有料のHasuraのサーバーを使ってもよいし、Dockerを使って手元でPostgreSQLと一緒に立ち上げることもできます。ですから、一旦手元で動かしてみることにします。
 
@@ -129,13 +132,16 @@ https://hasura.io/docs/1.0/graphql/manual/getting-started/docker-simple.html
 Tech-book-portalのルートで問題なさそうなので、ここで動かします。
 
 ```
-wget https://raw.githubusercontent.com/hasura/graphql-engine/stable/install-manifests/docker-compose/docker-compose.yaml
+wget https://raw.githubusercontent.com/hasura/graphql-engine/stable/install-manifests/
+docker-compose/docker-compose.yaml
 
 または
 
-curl https://raw.githubusercontent.com/hasura/graphql-engine/stable/install-manifests/docker-compose/docker-compose.yaml -o docker-compose.yml
+curl https://raw.githubusercontent.com/hasura/graphql-engine/stable/install-manifests/
+docker-compose/docker-compose.yaml -o docker-compose.yml
 
 $ docker-compose up -d
+デーモンとして起動
 
 $ docker ps
 起動していることを確認。
@@ -160,7 +166,7 @@ VirtualBoxを使っていたので、VirtualBoxマネージャの設定>ネッ�
 
 親OSのポート←VMのポート←Dockerのポートのような構造になっているようで、ポートフォワーディングの設定が必要なようです。
 
-ということは、Dockerで別のツールを使うたびに、必要に応じて追加しなきゃいけないようですね。
+ということは、Dockerで別のツールを使うたびに、必要に応じて新しいポートの設定を追加しなきゃいけないようですね。
 
 #### [/column]
 
