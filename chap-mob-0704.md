@@ -73,7 +73,7 @@ Hasura Clowdは結構高額なので、別に立てます。Hasuraha、クラウ
 
 ところが、項目が増えたり、関連する要素が増えると、何回もAPIをたたいたり、中間テーブルを作ったりする必要が出てきます。たとえば、Auther自体がネスト構造を持つという特徴を考えます。例えば、Autherの要素として、名前とか、アバターURL、TwitterURLなどが存在します。これを取得するために、RESTでやる場合には、AutherURLをたたいた後に別のURLをたたいたり、複数回のアクセスが必要になります。
 
-```
+```js
 // REST URL
 const indexUrl = 'https://api.exmaple.com/api/v1/books'
 const showUrl = 'https://api.exmaple.com/api/v1/books/12'
@@ -131,7 +131,7 @@ https://hasura.io/docs/1.0/graphql/manual/getting-started/docker-simple.html
 
 Tech-book-portalのルートで問題なさそうなので、ここで動かします。
 
-```
+```sh
 wget https://raw.githubusercontent.com/hasura/graphql-engine/stable/install-manifests/
 docker-compose/docker-compose.yaml
 
