@@ -87,7 +87,7 @@ BtoB向けSaaSのバックエンド開発をしているITエンジニア。Twit
 //embed{
     \begin{minipage}{.1\linewidth}
         \centering
-        \includegraphics[width=.75\linewidth]{images/contributors/nabekura_400x400.jpg}
+        \includegraphics[width=.75\linewidth]{images/contributors/nabekura.jpg}
     \end{minipage}
     \begin{minipage}{.89\linewidth}
         なべくら @nabe\_\_kurage https://twitter.com/nabe\_\_kurage/\\
