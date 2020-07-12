@@ -13,4 +13,4 @@
 
 ![本日やったこと](chap-mob-0709/0709-done.png?scale=0.8)
 
-![7月9日のFan Done Learn](chap-mob-0709/0709dandonelearn.png?scale=0.8)
+![7月9日のFan Done Learn](chap-mob-0709/0709fandonelearn.png?scale=0.8)
