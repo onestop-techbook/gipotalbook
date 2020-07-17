@@ -85,7 +85,7 @@
 ## モブワーク#6のふりかえり
 今回は、データベース設計の基本ということで、要素の抽出と整理を行いました。今回のようなブレスト的に要素抽出して整理していくワークにおいては、MURALの有用性が最大限発揮されたといえるでしょう。
 
-![#6のFan Done LearnとNext work](chap-mob-0702/0702fandonelearn.png?scale=0.9)
+![#6のFun Done LearnとNext work](chap-mob-0702/0702fundonelearn.png?scale=0.9)
 
 データベース設計の入り口ともいうべき、キーの抽出やリレーションの設計が一応できました。
 

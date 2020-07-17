@@ -77,12 +77,12 @@ HEAD, 今回は使わなかったHEAD^は、直前、そしてその前のコミ
 
 でお送りしますwみたいなところかな・・・ということで、役割についての学びもあったのです。
 
-## 恒例のふりかえりFan Done Learn
+## 恒例のふりかえりFun Done Learn
 
-もはや恒例のFan Done Learnです。
+もはや恒例のFun Done Learnです。
 
 無音でのモブワークという試み(当初意ｓ図したものではありませんが・・・)でしたが、これはこれで楽しかったです。また、gitコマンドのいろいろがわかってよかったのと、LiveShareでターミナルができなかった？これはあとで確認しましょう。
 
 MURALの無料期間というのに気づき、一旦解決ソリューションを見つけたなどが成果ですね。
 
-![6月25日のFan Done Learn](chap-mob-0625/0625fandonelearn.png?scale=1.0)
+![6月25日のFun Done Learn](chap-mob-0625/0625fundonelearn.png?scale=1.0)

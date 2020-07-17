@@ -141,9 +141,9 @@ http://ID.github.io/repositoryでアクセスできるはずです。Webブラ�
 
 ## 2回目のモブ(6/11)のふりかえり
 
-今回もふりかえりはFan Done Learnです。
+今回もふりかえりはFun Done Learnです。
 
-![2回目モブワーク(6月11日)のふりかえりFan Done Learn](chap-mob-0611/0611fandonelearn.png?scale=1.0)
+![2回目モブワーク(6月11日)のふりかえりFun Done Learn](chap-mob-0611/0611fundonelearn.png?scale=1.0)
 
 ![2回目モブワーク(6月11日)のNext Work](chap-mob-0611/0611nextstep.png?scale=0.8)
 
