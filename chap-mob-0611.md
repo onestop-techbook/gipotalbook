@@ -100,24 +100,29 @@ LiveShareは共有URLをクリックするだけで使えます。プラグイ�
 
 まずは、Githubのリポジトリにダミーのhtmlを作ります。これがないと、外から見てちゃんと設定できているのかがわかりません。
 
+```sh
 $ mkdir docs
-を作って、その中にindex.htmlを作ります。真っ白だとなにがなんだかわからないので、Hello.Worldとでも書いておくとよいでしょう。これをPushします。
+```
 
-なお、今回の設定では、/docsをドキュメントルートにしました。したがって、この配下に置いたものは相対パスで参照できます。
+まず`docs`ディレクトリを作って、その中にindex.htmlを作ります。真っ白だとなにがなんだかわからないので、Hello.Worldとでも書いておくとよいでしょう。これをPushします。
+
+なお、今回の設定では、`/docs`をドキュメントルートにしました。したがって、この配下に置いたものは相対パスで参照できます。
 
 あとは、このindex.htmlを改造すればいかようにでもできますね。
 
 #### [column] gh-pagesを使ってもできるらしいがやらなかった
-当該リポジトリにgh-pagesというブランチを切ってPushするだけ、という雑な説明から始まります。
+当該リポジトリに`gh-pages`というブランチを切ってPushするだけ、という雑な説明から始まります。
 
+```sh
 $ git branch
 master
 $ git checkout -b gh-pages
 $ git branch
 master gh-pages
 $ git pull origin master
+```
 
-ですが、必ずしもgh-pagesというブランチでなくとも公開できるそうなので、Masterにフォルダを作ってやることになりました。使わなかったけど、gitのコマンドも覚えられて便利！
+ですが、必ずしも`gh-pages`というブランチでなくとも公開できるそうなので、`master`にフォルダを作ってやることになりました。使わなかったけど、gitのコマンドも覚えられて便利！
 
 #### [/column]
 
@@ -129,9 +134,9 @@ $ git pull origin master
 
 ![プルダウンメニューから設定](chap-mob-0611/pulldownmenu.png?scale=0.8)
 
-初期設定ではnoneになっていますので、これをmaster branchまたはmaster brach /docs folderに設定することで設定できるようになります。
+初期設定ではnoneになっていますので、これを`master branch`または`master brach /docs folder`に設定することで設定できるようになります。
 
-http://ID.github.io/repositoryでアクセスできるはずです。Webブラウザから確認してみてみましょう。index.hmtlの中身が見えれば成功です。
+http://ID.github.io/repository でアクセスできるはずです。Webブラウザから確認してみてみましょう。index.hmtlの中身が見えれば成功です。
 
 なお、今回の設定では、/docsをドキュメントルートにしました。したがって、画像などもこの配下に置いていきます。
 
