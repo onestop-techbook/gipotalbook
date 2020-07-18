@@ -23,8 +23,8 @@ https://help.github.com/en/github/working-with-github-pages/managing-a-custom-do
 ![DNSレコードの設定](chap-mob-0614/dnsrecord.png?scale=0.8)
 
 * CNAMEを設定する
-/docs/CNAMEというファイルを作り、ここにgipotal.jpと記入します。
-/docsがドキュメントルートになる場合ですから、リポジトリのトップがルートになる場合は、当該リポジトリのトップに置くことになります。
+`/docs/CNAME`というファイルを作り、ここにgipotal.jpと記入します。
+`/docs`がドキュメントルートになる場合ですから、リポジトリのトップがルートになる場合は、当該リポジトリのトップに置くことになります。
 
 ただし、Pushしてない状態でも動いたので、どうやらこの設定はいらない模様です・・・(一応やったこととして書いておきます
 
@@ -50,12 +50,12 @@ OGPとは、Open Graph Protcolの略で、TwitterなどSNSでシェアした時�
 Webのいろいろなところに解説がありますので、OGPの記載例を参考に、コードを入れます。
 
 ```html
-  <meta property="og:url" content="https://gipotal.jp" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="TOPページ" />
-  <meta property="og:description" content="ぎぽたる｜技術同人誌ポータルは、世の中のさまざまな技術同人誌・サークルへの入り口です。ジャンル、イベント横断検索、新着告知など、新しい本との出会いの場です。" />
-  <meta property="og:site_name" content="gipotal | 技術同人誌ポータル" />
-  <meta property="og:image" content="https://gipotal.jp/images/ogp.png" />
+<meta property="og:url" content="https://gipotal.jp" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="TOPページ" />
+<meta property="og:description" content="ぎぽたる｜技術同人誌ポータルは、世の中のさまざまな技術同人誌・サークルへの入り口です。ジャンル、イベント横断検索、新着告知など、新しい本との出会いの場です。" />
+<meta property="og:site_name" content="gipotal | 技術同人誌ポータル" />
+<meta property="og:image" content="https://gipotal.jp/images/ogp.png" />
 ```
 
 OGP用の画像を準備するとか、サイト説明(description) を考えておく必要はあります。
@@ -66,17 +66,17 @@ OGP用の画像を準備するとか、サイト説明(description) を考えて
 Twitterカードとファビコンの設定もついでにやっておきます。
 
 ```html
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@gipotal" />
-  <link rel="icon" href="https://gipotal.jp/images/favicon.png" sizes="32x32" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@gipotal" />
+<link rel="icon" href="https://gipotal.jp/images/favicon.png" sizes="32x32" />
 ```
 
 ## 正式名称を決める
 さて、ここまで何となくギポタル/ぎぽたるできてましたが、正式に決めたわけではありません。Twitterのハッシュタグなどにも関わりますので、ここで確定することにします。
 
-カタカナ、ひらがな、アルファベットのぎぽたるが残っていました。実際これまでの進捗報告でハッシュタグを三つ併記していました。
+候補には、カタカナ、ひらがな、アルファベットそれぞれのぎぽたるが残っていました。実際これまでの進捗報告でハッシュタグを三つ併記していました。
 
-モブワークやりました！#gipotal #ギポタル　#ぎぽたる　みたいな感じで、後日対応もできるようにしましたが、冗長である感は否めません。
+`モブワークやりました！ #gipotal #ギポタル #ぎぽたる`みたいな感じで、後日対応もできるようにしましたが、冗長である感は否めません。
 
 MURALの投票機能を使って、参加者で投票します。カタカナギポタルが強かったので、それに決定です。同時にロゴ、アイコンのプロトタイプも作ってくれました。
 
@@ -177,3 +177,17 @@ Twitterの運用として、ぎぽたるちゃんアカウントを作るとい�
 次は、コーディングというよりプロダクト的な話で、インセプションデッキの作成、そしてGitHubや環境の整理、ぎぽたる族のTwitter作るなども次にやることです。
 
 Learnはそれ自体が学びで、デザインに関してデザイナーがどんなことを考えているのかが知れた、インセプションデッキの概要について知るなど、新たな学びが出てきたことは本当に良いことです。
+
+#### [column] 泣きながら執筆してるぎぽきちの中の人です
+
+どうも、泣きながら執筆しているえるきちです。いつも泣いてるわけじゃないんだギポ！
+
+最近の技術書典では、執筆期限がギリギリすぎて前日入稿をキメて当日は疲れのあまり「即身仏」になっていたり、「新刊落としました」の実績を達成してしまったり、前日から当日までがっつりお試し冊子を作成して、設営開始時刻に遅刻したりしたこともありましたが、わたしは元気ですギポぉ。
+
+なんか自分をもとにキャラが作られるのは光栄ではあるものの、泣きながら執筆してるイメージかー、そうかーという複雑な気持ちでもあるんだギポ。
+
+ぎぽきちくん（ちゃん？）のなんとも言えない味わい深い表情はとても好きですギポ。
+
+なべくらさん素敵ギポ！
+
+#### [/column]
