@@ -61,7 +61,7 @@ import { NextPage } from "next"; // NextPage という単体の型を取って�
 
 NextPageという型が設定できたので、補完が効くようになったり、型支援が効くようになり、いろいろ便利になります。関数として定義されるので、想定しない引数が指定されたりしたときにエラーが出るようになります。
 
-[^import]: インポートの参考ページ:https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import
+[^import]: 参考ページ:https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import
 
 
 このあたりの準備と説明で思ったより時間がかかってしまいましたが、いよいよ実際に本体を作り始めます。まずはヘッダーから。
@@ -104,6 +104,66 @@ return <header><img src="/images/logo.svg"/>親方Project</header>　//OK
 
 Shift+Opt+Fを押すと、オートフォーマッタによるインデント修正が可能ですので、時々インデントを直しましょう。見た目がきれいになり、誤読も減るでしょう。
 
+### ボタンを作る
+
+新規登録、ログインのボタンをヘッダーに置きます。まずはテキストを表示します。表示できましたね。
+
+次に、これをボタンにしていきます。
+
+index.tsxと同じところに、index_module.cssというファイルを作り、ここに書いていきます。
+また、CSSを当てるために、CSSファイルを指定しておきます。
+
+まず、黒いボタンを作ります。
+
+フォント、フォントサイズ、ボタンのサイズ、padding、Borderなどを指定します。白いボタンも同じように作ったら、リファクタリングです。
+共通のタグをくくりだし共通化するとともに、異なる要素を`blackButton` `whiteButton`として分離させます。リファクタリングの基本は「前後で挙動が変わらない」ですので、つど確認しながら進めます。
+
+```css
+.button {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 13px 24px;
+  border-radius: 50px;
+}
+
+.button + .button {
+  margin-left: 10px;
+}
+
+.blackButton {
+  color: #fff;
+  background-color: #000;
+}
+
+.whiteButton {
+  color: #000;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
+}
+```
+
+```js
+import styles from "./index.module.css";
+...
+        <Link href="/signup">
+          <a className={[styles.blackButton, styles.button].join(" ")}>
+            新規登録
+          </a>
+        </Link>
+        <Link href="/login">
+          <a className={[styles.whiteButton, styles.button].join(" ")}>
+            ログイン
+          </a>
+        </Link>
+...
+```
+それぞれのリンクに、カンマでつないだ二つのStyleを適用しています。なお、二つのスタイルをつなぐために、.join(" ")により結合しています。
+
+Shift+opt+Fでオートフォーマットをかけて、本日はそろそろおしまいですね。開始から2時間経過しましたので、振り返りを軽くやっておしまいです。
+
 #### [column] Web会議で目線が合わない
 
 雑談かつ、リモート会議あるあるです。そもそも目線を合わせる必要がないのはありますが、PCのカメラではうまく合わないときの話。
@@ -113,9 +173,9 @@ Shift+Opt+Fを押すと、オートフォーマッタによるインデント修
 #### [/column]
 
 ## まとめと振り返り
-サークルのトップページを作り始めました。ロゴ画像を表示したり、Headerを作ってヘッダーコンポーネントを配置したり、ボタンを作って、形を整えたり新規登録やログインという表示をしたり。
+サークルのトップページを作り始めました。ロゴ画像を表示したり、Headerを作ってヘッダーコンポーネントを配置したり、ボタンを作って、形を整えたり新規登録やログインという表示をしたり。また、Figmaほんとに便利ですね・・・一から作るのと比べるとダンチ・・・素敵なツールです。
 
-それと一緒に、importの違い(デフォルトインポートと単なるインポートの違い)などを共有しました。次回予定は、7月11日に、情報を載せていくあたりですね。
+それと一緒に、importの違い(デフォルトインポートと単なるインポートの違い)などを共有しました。次回予定は、7月11日に、情報を載せていくのをやる予定です。
 
 ![本日やったこと](chap-mob-0709/0709-done.png?scale=0.8)
 
