@@ -28,6 +28,7 @@
 
 ```sh
 npx prettier
+prettier resuires at least version 10.13.0 of Node. Please
 ```
 
 でPrettierをインストールしようとしたことによります。ところが、Node.jsのバージョンが対応しないという旨のエラーが出ました。起動時にバージョンをあげているにも関わらず、nodeのバージョンが8.15.0になってしまうという状況でした。
@@ -35,22 +36,29 @@ npx prettier
 そこで、Nodeのバージョンを固定します。
 
 ```sh
-code /.bashrc
+$ code ~/.bashrc
 ```
 
-でbashの設定ファイルを開き、１２系に固定するようにします。`nvm use 12`
-でnodeの12に固定します。
-にも関わらず、走っているバージョンが8.15.0になってしまうという事です。
+でbashの設定ファイルを開き、Ver12系に固定するようにします。`nvm use 12`
+でnodeの12に固定します。にも関わらず、走っているバージョンが8.15.0になってしまうという状態です。
 
-echoで適当な文字列を入れて、.bashrcが走っている事を確認して、上でnow running node 12となっているにもかかわらず、バージョン確認をしたところ8に戻ってしまうという状況です。謎い。
+```sh
+$ export |grep SHELL
+declare -x SHELL="/bin/bash"
+```
+
+となり、確かにbashであることが確認できました。次は、.bashrcにechoで適当な文字列を入れて、.bashrcが走っている事を確認します。上でnow running node 12となっているにもかかわらず、バージョン確認をしたところ8に戻ってしまうという状況です。謎い。
 
 `.bash_profile`も確認します。
 
-もっとさんから、デフォルトを変更するコマンドを書き足します。一旦Node8をアンインストールします。
+もっとさんから、デフォルトを変更するコマンドの提案がなされますが、やっぱりだめです。デフォルトは12系になっていることは確認できたものの、現在の
+
+一旦Node8をアンインストールしてみます。使ってないので問題ないはず。
 
 ```sh
-$ nvm uninstall 8
-node　command not found
+$ nvm uninstall 8.15.0
+$ node -v
+-bash node　command not found
 ```
 
 と、Nodeが見つからないというエラーとなりました
