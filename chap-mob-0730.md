@@ -39,6 +39,48 @@ Next.jsの画面を更新すると、データが読み込まれ、先ほど入�
 
 プロジェクトのルートに.envというファイルを作ります。
 
-GRAPHQL_URL = "https://hoge.heroku/hoge"
+```js .env
+GRAPHQL_URL = "https://hoge.heroku/hoge"　//変更後1
+NEXT_PUBLIC_GRAPHQL_URL = "https://hoge.heroku/hoge"　//変更後2。OK
+```
 
+```js index.tsx
+  url: https://hoge.heroku/hoge, //もと
+  url: process.env.GRAPHQL_URL,　//変更後1、クライアントサイドに公開されるのでNG
+  url: process.env.NEXT_PUBLIC_GRAPHQL_URL,　//変更後2、OK
+```
+としてみます。が、これでは動きません。Nextを再起動したところで。起動ログに.envが読み込まれている記載があったのでその点は問題ありません。
 
+これが動かないNEXT.jsはサーバーサイドにもクライアントサイドにも利用されるのですが、変更後の環境変数がクライアントに公開されてしまうことになります。そこで、環境変数をクライアントサイドに公開するのかしないのかを指定する必要があるのです。
+
+なお、隠匿するものだけでなく、環境ごとに変えたいといったときにも使えます。
+
+HasuraのURLは隠匿するようなものでもないので、このままPushしておきます。今後隠匿が必要なものが生じたらそのときに設定します。
+
+ただし、.envはGitHubの無視するファイルに含まれています。ですからリポジトリで公開する場合に追跡されません。
+
+これでは他に使ってみようと思った人が困ってしまいます。そこで、`.env.exaple`を作り、公開しておくと取基に、セットアップ方法をReadmeに記載します。
+
+```sh
+$ npm install 
+$ cp .env.example .env
+# ローカルでHasuraを立ち上げる人のために
+$ docker-compose up
+$ npm run dev
+```
+環境変数を設定するところを作っておきますが、動かすにはまだ一つ手順が足りません。
+
+それは、立ち上げたHasuraにダミーデータを作るところです。また、安全に立ち上げるためにはデータのインポート・エクスポートができる必要があります。
+
+そこで、一旦環境変数を構築、というところでコミットしておきます。
+
+``` .gitignore
+# dotenv environment variable files 
+.env*
+!.env.example
+```
+として、`.env`は無視するが、`.env.example`は無視から除外し追跡・アップロードできます。
+
+一旦これでおしまいですね。
+
+### 
