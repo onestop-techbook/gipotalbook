@@ -7,6 +7,6 @@
   },
   "scripts": {
     "clean": "rm -rf .review",
-    "build": "easybooks online.json"
+    "build": "easybooks gipotalbook.json"
   }
 }

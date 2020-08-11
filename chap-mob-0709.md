@@ -73,7 +73,7 @@ const id = router.query.id
 
 こうやって NextPageという型をインポートしたことで、補完が効くようになったり、型支援が効くようになり、いろいろ便利になります。関数として定義されるので、想定しない引数が指定されたりしたときにエラーが出るようになります。
 
-[^import]: 参考ページ:https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import
+[^import]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import
 
 
 このあたりの準備と説明で思ったより時間がかかってしまいましたが、いよいよ実際に本体を作り始めます。まずはヘッダーから。
