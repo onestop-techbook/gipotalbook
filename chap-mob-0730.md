@@ -94,5 +94,172 @@ git config -e
 
 これで設定項目が開きますから、`[remote "origin"]`の中に記載されているURLを新しいリポジトリに変更します。viで開いてしまったため、viの使い方講座が始まったのは別の話。
 
-## HasuraのSchemaをどうやって管理する？
+デプロイしてここはおしまいです。ついでに、Next.jsを9.5に更新しておきます。
 
+## HasuraのSchemaをどうやって管理する？
+次は、Hasuraの中でデータをどう管理するのか？というところです。
+
+ですから、Hasuraが見ているPostgresSQLのマイグレーションのための調査、確認を行います。
+
+Hasuraの機能として、変更されたものをMigrationを自動生成して取り扱うことができるようです。
+基本的には、Herokuの上で操作するわけではないので、Migrationファイルを突っ込むだけでできます。そこでdocker-compose.ymlを書き換えます。
+
+``` docker-compose.yml
+#11行目
+image: hasura/graphql-engine:v1.2.2  #Before
+image: hasura/graphql-engine:latest.cli-migrations-v2 #After
+#19行目
+HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # Before set to "false" to disable console
+HASURA_GRAPHQL_ENABLE_CONSOLE: 'false' # After
+```
+Docker-composeを再起動しようとしたところ、Dockerがそもそも起動していないようだったので、Dockerをデーモンとして起動します。そして、Hasuraのコマンドラインツールをインストールします。あとは、初期化し、
+
+```
+$ docker-compose up -d
+$ npm install hasura-cli
+$ npx hasura init
+# Project directoryを作る
+$ ls giotal
+config.yml metadata migrations　
+$ npm run hasura migrate create init --from-server
+INFO Migrations file created
+$ npm rum hasura console
+# SQLファイルが生成されます。
+# Hasura Consoleでデータを追加し、Migrationデータが更新されることを確認して完了。
+```
+
+``` package.json
+  "Scripts":{
+    "hasura": "hasura -- project hasura" #追加
+  }
+```
+
+ただし、これをそのままやると、消したという履歴が残ってしまうという不整合問題が生じる可能性があります。そろそろきちんとテーブル設計をはじめないといけないですね・・・
+
+「マイグレーションの仕組みを追加」とコミットメッセージを書いてコミットします。フロントの人ばっかりなのに、完全にインフラ・サーバーサイドのことをやってますね。まあそういう日もあってよいでしょう。
+
+Hasura関係でやっておきたいことが二つあり、それをついでにやってしまします。
+
+一つ目は、ApolloClientの初期化を個別ページでやっているので、それをindex.tsxから_app.tsxにお引越しします。
+
+動作確認のために、サークルページにProfilesを表示してみます。
+
+```js [id]index.tsx
+import Profiles from "@/components/profiles"
+
+<Profiles />  #たとえばHeader内にProfilesとして、表示データを一括で表示。
+```
+ApolloClienstが最新版じゃないため動かない？ということで、確認してみると、ちょうどメジャーアップの狭間だったということになります。一度node_modulesとpackage_lock.jsonを消して、再インストールしてみたところ動きました。何もしてないのに壊れ、何もしてないのに直るという状況。これで動いたら笑うんだけど、と軽口をたたきながら、実際に動いてしまいます。いずれにせよ、こういうことができるのがやはりモブのいいところですね。しかもみんなで相談することで、いろいろな可能性や選択肢を見つけたりトライしてみたりすることができるのが素晴らしいところですね。
+
+これで、Hasuraで登録したデータを持ってくることができるようになった、ということになりますので、必要なデータをデータベースから持ってきて表示することができるようになったということです。
+
+もう一つのやりたいことは、コードジェネレーターの追加です。
+
+package.jsonのdependanciesに追加します。
+
+クエリでHasuraからデータを取ってくるときに、せっかく型のある言語なのに型が付きません。そこで、TypeScriptの型情報を吐き出すなどに必要なツール群を追加します。
+
+```js package.json
+  "Scripts":{
+    "codegen": "gql-gen" 
+  }
+  "dependencies":{
+    "@graphql-codegen/cli": "^1.17.0",
+    "@graphql-codegen/introspection": "^1.17.0",
+    "@graphql-codegen/typescript": "^1.17.0",
+    "@graphql-codegen/typescript-operations": "^1.17.0",
+    "@graphql-codegen/typescript-react-apollo": "^1.17.0",
+  }
+```
+
+codegen.ymlファイルを作り、その中に以下のコードを追加します。
+
+```js codegen.yml
+schema: http://localhost:8080/v1/graphql/
+documents:
+  - ./src/**/*.graphql
+overwrite: true
+generates:
+  ./src/generated/graphql.ts:
+    plugins:
+      - typescript
+      - typescript-operations # .tsx に書いた query, mutation 等から対応する型を生成する
+      - typescript-react-apollo # .tsx に書いた query, mutation 等から対応する hooks を生成する
+    config:
+      skipTypename: false
+      withHooks: true
+      withHOC: false
+      withComponent: false
+``` 
+
+それができたら、nmp installで関係パッケージのインストールを進めます。
+
+components>profiles.graphqlというファイルを作り、
+もともとのクエリを貼り付け、少し書き換えます。
+
+```js profiles.graphql
+query get profiles{
+  profiles{
+    id
+    name
+  }
+}
+```
+generatedというフォルダができるので、その中にgraphql.tsというファイルができています。
+
+profile.jsに、
+```js profiles.graphql
+//import {useQuery} form "@apollo.react-hooks";消す
+import useGetProfilesQuery from "@/generated/graphql"
+・・・
+const {loading,error,data}　= useGetProfileQuery();
+・・・
+```
+と書き換えます。使うクエリは変わりましたが、動作は変わらないことを確認します。また、中の変数を見て(たとえばprofile)を見ると、型情報が付いていることが確認できます。また、クエリ自体を外だしできるというメリットもあります。
+
+.graphqlというファイルにクエリを外だしすることができ、かつそれをアクセスするための関数(useGetProfileQuery)がかってに生成されたことになります。ComponentとQueryの分割ができ、見通し、管理がしやすくなります。利用する側からは、関連するクエリを使えるようになりますい、クエリだけを作っていくことでそれを読み取り配置していくだけにすることも可能になります。
+
+```js sampleQuery
+query getCircle($id: Int!) {
+  circles(where: { id: { _eq: $id } }) {
+    id
+    name
+    user {
+      display_name
+      id
+      screen_name
+    }
+    description
+  }
+}
+```
+サークル情報を取るクエリは、引数を増やし、上記のように書くことができます。
+
+
+ここで悩ましいのは、generatedを共有するかどうかです。個人で生成すべきという考え方もできますし、生成したものを共有することで漏れがなくなったりというメリットがあります。diffが大きくなったりコンフリクトが起こったりする可能性があります。外す場合は、gitignoreに入れて置けばよいでしょう。
+
+また、npm run devをウォッチしておき、不用意な生成を監視しておくという選択も可能です。実運用は後日考えます。
+
+今日はこれくらいにしておきましょう。
+
+一旦、graphqlコード生成(/src/generated)は.gitignoreに追加しておき、GitHubpushされないようにします。
+
+#### [column] やったことがわかるとコミットメッセージは簡単
+一連のワークの概要がわかったら、コミットメッセージをつけやすいですね
+
+案外何を書くか悩むものですが、その変更で何をやったのかといったところが把握できていると、個のコミットでは何をやったか、というところが書きやすくなります。
+#### [/column]
+
+#### [column] 小ネタ:Spotlight検索
+Macの上のバーの右端近くに虫眼鏡があります。これをクリックすと、Spotlight検索開きます。アプリを直接探して検索したり、電卓として計算をしたり、便利に使えます。
+
+Windowsの検索とかファイル名を指定して実行に近い機能かな？
+#### [/column]
+
+## まとめ
+Hasuraからデータがとってこれるようになったので、あとはフロントとデータベースをがつがつ進めていけるようになりました。
+
+えるきちさんが本の予習でやっていたため、非常にスムーズに進みましたが、一からやろうとすると大変ですね。
+
+
+![7月30日のFun done learn](chap-mob-0730/0730fundonelearn.png?scale=0.8)
