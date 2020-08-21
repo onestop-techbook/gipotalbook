@@ -114,7 +114,7 @@ HASURA_GRAPHQL_ENABLE_CONSOLE: 'false' # After
 ```
 Docker-composeを再起動しようとしたところ、Dockerがそもそも起動していないようだったので、Dockerをデーモンとして起動します。そして、Hasuraのコマンドラインツールをインストールします。あとは、初期化し、
 
-```
+```sh
 $ docker-compose up -d
 $ npm install hasura-cli
 $ npx hasura init
