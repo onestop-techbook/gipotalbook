@@ -133,7 +133,19 @@ BtoB向けSaaSのバックエンド開発をしているITエンジニア。Twit
 あと、近畿青年技術士懇親会 http://seigikon.jp\\ って勉強会の幹事をさせていただいています。
 資格は10種以上もってますね。色々あったんですよ…　いやほんと。
 
-あとおにぎりさんも書いてもらわないとー
+
+
+//embed{
+    \begin{minipage}{.1\linewidth}
+        \centering
+        \includegraphics[width=.75\linewidth]{images/contributors/onigiri.jpg}
+    \end{minipage}
+    \begin{minipage}{.89\linewidth}
+        onigiri(おにぎり) https://twitter.com/onigiri_\\
+        \end{minipage}
+    \hspace{1ex}
+//}
+突如現れた米類のテックリード。ウェブフロントエンドが得意ですが、GCPやGoとかもやれます。
 
 == 表紙イラスト・デザイン　
 
