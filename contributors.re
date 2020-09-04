@@ -141,7 +141,7 @@ BtoB向けSaaSのバックエンド開発をしているITエンジニア。Twit
         \includegraphics[width=.75\linewidth]{images/contributors/onigiri.jpg}
     \end{minipage}
     \begin{minipage}{.89\linewidth}
-        onigiri(おにぎり) https://twitter.com/onigiri_\\
+        onigiri(おにぎり) https://twitter.com/onigiri\_\\
         \end{minipage}
     \hspace{1ex}
 //}
