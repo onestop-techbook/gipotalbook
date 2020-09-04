@@ -6,7 +6,7 @@ HerokuにTeamを作り、Hasuraを組み込みます。また、Vercelを使っ�
 ## HerokuにTeamを作りデプロイする
 Hasura/Graphqlをデプロイします。これ自体は前回いちどやってますが、個人IDでの実施でしたから、まずはHerokuにTeamを作ります。
 
-Teamにすることで、複数の人手アクセスできます。5人までは無料ですので、ユーザーを招待します。
+Teamにすることで、複数の人でアクセスできます。5人までは無料ですので、ユーザーを招待します。
 
 再度、Hasuraからワンクリックでのデプロイができますので、今回もこれを使います。
 
@@ -23,7 +23,7 @@ Teamにすることで、複数の人手アクセスできます。5人までは
 GitHubの連携設定をはじめます。
 
 
-![Vercelの設定](chap-mob-0813/vercelSetting1.png?scale=0.8)
+![Vercelの設定](chap-mob-0813/vercelSetting1.png?scale=0.5)
 
 GitHubのリポジトリを選択し、Deployします。
 

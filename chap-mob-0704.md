@@ -256,7 +256,7 @@ User Text
 
 とりあえずは、データを追加してみましょう。
 
-Insert Rowから、IDとNameを入力し、Saveます。型に合わない場合はエラーが返るので修正します。
+Insert Rowから、IDとNameを入力し、Saveします。型に合わない場合はエラーが返るので修正します。
 
 ![データの入力](chap-mob-0704/insertrow.png?scale=0.8)
 
