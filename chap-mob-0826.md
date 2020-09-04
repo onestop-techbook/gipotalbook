@@ -208,6 +208,6 @@ OJTで学ぶとはいえ、会社によってやり方は違うし、決して�
 
 恒例のFun done learnをやっておしまいです。なんだかんだで2時余りかかりました。お疲れさまでした。
 
-![8月26日のFun done learn](chap-mob-0826/0826Fun donelearn.png?scale=0.8)
+![8月26日のFunDoneLearn](chap-mob-0826/0826Fun donelearn.png?scale=0.8)
 
 
