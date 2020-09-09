@@ -53,7 +53,7 @@ Firebase AuthenticationであろうとAuth0であろうと、Roleを作ってく
 
 今後、Herokuについて何か困ったことがあった場合は、Youtubeで情報収集をしてみるのも良いかもしれません。  
 
-[^koushiki]: Heroku公式Youtubeチャンネル　https://www.youtube.com/channel/UCE8rdqp8ZM4kuXj8CwIwZHg
+[^koushiki]: Heroku公式チャンネル　https://www.youtube.com/channel/UCE8rdqp8ZM4kuXj8CwIwZHg
 
 #### [/column]
 
