@@ -42,6 +42,20 @@ Firebase AuthenticationであろうとAuth0であろうと、Roleを作ってく
 
 とはいえ、まずは、先週の課題解決おめでとうございます！
 
+#### [column] Herokuでの実装例の情報収集について Aizack
+
+今回のように、Hasura+GraphQLをHerokuにデプロイするといった実装例を探す際には公式ドキュメントを読むのも良いですが、Youtubeでの情報収集が意外と役に立ちます。   
+実は、Herokuも下記のような公式Youtubeチャネル[^koushiki]を持っており、今回のアーキテクチャの実装例は日本語の動画が公式からアップロードされています。
+
+![Heroku公式Youtubeチャンネル](chap-mob-0820/heroku1.png?scale=0.8)  
+
+![今回のアーキテクチャの実装動画](chap-mob-0820/heroku2.png?scale=0.8)  
+
+今後、Herokuについて何か困ったことがあった場合は、Youtubeで情報収集をしてみるのも良いかもしれません。  
+
+[^koushiki]: Heroku公式Youtubeチャンネル　https://www.youtube.com/channel/UCE8rdqp8ZM4kuXj8CwIwZHg
+
+#### [/column]
 
 ## 自動デプロイ回り
 マイグレート回りは、本日はお休みのえるきちさんが来た日にやりましょうということになり、今日の宿題を再確認します。
