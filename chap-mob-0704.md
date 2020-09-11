@@ -1,11 +1,11 @@
-# フロントを作る(モブ#7 7/4)
+# フロントを作る（モブ#7 7/4）
 
 モブワークも7回目を数え、いよいよフロントを作り始めます。
 ## JS環境を設定する
 まずは、JS環境の構築です。いつも通り、Zoomでの画面共有と、VSCodeのLive Shareではじめます。
 Shared TerminalでRead/Writeの権限を付けることで、ターミナルも使えるようになりますが、大分バギーなので、結局はターミナルの操作は、なべくらさんだけが行うということにしました。
 
-前回環境をきれいにした状態で、Node.jsを入れました。様々な事情によりnvmでのNode.jsデフォルトバージョンが8になっていましたが、v12.16.3も別途入っているので、新しい方にしましょう。ちなみにこれは理由があって、後ほどの
+前回環境をきれいにした状態で、Node.jsを入れました。様々な事情によりnvmでのNode.jsデフォルトバージョンが8になっていましたが、v12.16.3も別途入っているので、新しい方にしましょう。ちなみにこれは理由があって、後ほど原因がわかります。ここでは手動で変更しました。最初からこの状態の方は問題ありません。
 
 ```sh
 $ nvm use 12.16.3
@@ -28,7 +28,7 @@ $ mv gipotal/public tech-book-portal
 $ mv gipotal/pages tech-book-portal
 ```
 
-そのため既存フォルダから抜け出して、一度新しいフォルダを作り、そこにインストールします。そのうえで `packages.json`と`/pages`と`/public`を対象フォルダ(ここではtech-book-portal)にコピーしました。
+そのため既存フォルダから抜け出して、一度新しいフォルダを作り、そこにインストールします。そのうえで `packages.json`と`/pages`と`/public`を対象フォルダ（ここではtech-book-portal）にコピーしました。
 
 ```sh
 $ cd tech-book-portal
@@ -36,9 +36,11 @@ $ npm i
 $ npm run dev
 ```
 
-この `npm i` は `npm install` と同じ効果の短縮コマンドです。`npm run dev` は、`package.json`の`scripts`に書かれてある `dev` というコマンドを実行するものです。`yarn` を使う場合は、`npm i` は `yarn` に、`npm run dev` は `yarn dev` に置き換え可能です。
+この `npm i` は `npm install` と同じ効果の短縮コマンドです。`npm run dev` は、`package.json`の`scripts`に書かれている `dev` というコマンドを実行するものです。`yarn` [^yarn]を使う場合は、`npm i` は `yarn` に、`npm run dev` は `yarn dev` に置き換え可能です。
 
-これで、localhots:3000にアクセスすると `create-next-app` が作成したデフォルト画面で、動いていることが確認できます。このとき表示されている画面は`/pages/index.js`で、このファイルを書き換えて、ファイルを保存すると、画面にすぐさま反映されます。動作確認のために雑に変更して反映されることを確認します。
+[^yarn]: Facebookが公開したJavaScriptのパッケージマネージャ。npmと互換性がある。
+
+これで、http://localhots:3000にアクセスすると `create-next-app` が作成したデフォルト画面で、動いていることが確認できます。このとき表示されている画面は`/pages/index.js`で、このファイルを書き換えて、ファイルを保存すると、画面にすぐさま反映されます。動作確認のために雑に変更して反映されることを確認します。
 
 初期の`/pages`以下にあれこれ置くのはごちゃっとする問題があります。Next.js 9.1以後は、`/src` というモダンJavaScript界隈で当たり前となっているディレクトリ構造に対応してくれたので、`/src/pages` に移動してしまいましょう。
 
@@ -75,9 +77,9 @@ export default function Home() {
 
 こうなるとCSS定義も消えたので、CSSを当てます。
 
-Reactでよく使われるCSSライブラリはemotionなどが有名ですが、色々インストールしないといけなくて面倒なので、Next.js標準で使える CSS Modules を使ってみましょう。
+Reactでよく使われるCSSライブラリはemotion（https://github.com/emotion-js/emotion）などが有名ですが、色々インストールしないといけなくて面倒なので、Next.js標準で使える CSS Modules を使ってみましょう。
 
-まずは `index.module.css` というファイルにCSSを定義します。
+まずは `index.module.css` というファイルを作り、ここにCSSを定義します。
 
 ```css {filename=index.module.css}
 .hello {
@@ -85,7 +87,7 @@ Reactでよく使われるCSSライブラリはemotionなどが有名ですが�
 }
 ```
 
-そして、このファイルをJS側で`import`します。
+そして、このファイルをJS側で`import`します。また、11行目で本文「ギポっ」にindex.modules.cssで記述しているhelloクラスのCSSが当たり、文字が赤くなります。
 
 ```jsx {filename=index.js}
 import Head from "next/head";
@@ -104,20 +106,20 @@ export default function Home() {
 }
 ```
 
-これで、文字が赤くなったことがわかり、CSSを当てられるということを確認できます。
+ブラウザで確認すると、文字が赤くなったことがわかり、CSSを当てられたということを確認できます。
 
 このとき JSのソースで `styles.hello` は HTML class名として使える文字列なので `<main className={styles.hello}>ギポっ</main>` というコードを記述すると、`index.module.css`で定義されている`hello`クラスのCSSが当たります。
 
 ここで、モジュールとして読み込むところから脱線して、いろいろ話が展開しますが、ここでは省略します。いろいろやり方はあるのですが、シンプルなので、CSS Modulesで行きます。
 
-なお、`.next`の下にいろいろできてしまうので、`.gitignore`に`.next`の下を無視するように設定します。
+なお、`.next`の下にいろいろなファイルが勝手に生成されてしまうので、`.gitignore`に`.next`の下を無視するように設定します。
 
 ここでコミットします。なんだかんだで1時間経過してしまいましたが、ここでなべくらさんのマシンにJS環境を作るというところまで完了したことになります。
 
 [32ed0ed8c5e8cb62cfc39abaef5c773f75c1b3cc](https://github.com/onestop-techbook/tech-book-portal/tree/32ed0ed8c5e8cb62cfc39abaef5c773f75c1b3cc)
 
 ## Hasuraを組み込む
-目標の二つ目が、「DB項目少な目でやってみる」です。適当なデータを引っ張ってくるのをテストします。Next.jsにHasuraをどうやって仕込むのかを調べながらやるのです。
+目標の二つ目が、「DBを項目少な目でやってみる」です。適当なデータを引っ張ってくるのをテストします。Next.jsにHasuraをどうやって仕込むのかを調べながらやるのです。
 
 Hasura Cloudは結構高額なので、別に立てます。Hasuraはクラウドサービスにも見えますが、Container、その他でも動かせるオープンソースのツールです。なので、まずはHasuraのチュートリアルをやりながら動かしてみます。
 
@@ -128,7 +130,7 @@ Hasura Cloudは結構高額なので、別に立てます。Hasuraはクラウ�
 ```js {caption=RESTをする模擬コード}
 // REST URL
 const indexUrl = 'https://api.exmaple.com/api/v1/books'
-const showUrl = 
+const showUrl = 'https://api.exmaple.com/api/v1/books/12'
 const showUrlLight = 'https://api.exmaple.com/api/v1/books/12/light'
 const authorUrl = 'https://api.exmaple.com/api/v1/authors/12'
 
@@ -142,7 +144,7 @@ const getBook = (bookId) => {
 }
 ```
 
-ところが、項目が増えたり、関連する要素が増えると、何回もAPIをたたいたり、中間テーブルを作ったりする必要が出てきます。たとえば、Auther自体がネスト構造を持つという特徴を考えます。例えば、Autherの要素として、名前とか、アバターURL、TwitterURLなどが存在します。これを取得するために、RESTでやる場合には、AutherURLをたたいた後に別のURLをたたいたり、複数回のアクセスが必要になります。
+ところが、項目が増えたり、関連する要素が増えると、何回もAPIをたたいたり、中間テーブルを作ったりする必要が出てきます。たとえば、Auther自体がネスト構造を持つという特徴を考えます。例えば、Autherの要素として、名前とか、アバターURL、TwitterURLなどが存在します。これを取得するために、RESTでやる場合には、AutherURLのAPIをたたいた後に別のURLをたたいたりと、複数回のアクセスが必要になります。
 
 これに対し、GraphQLであれば、取りたい情報だけをRequestとして指定できるので、シンプルにデータを取得することができます。
 
@@ -158,7 +160,6 @@ query getBooks {
     twitterUrl
   }
 }
-`
 
 graphqlClient(graphqlUrl, query)
 
@@ -179,7 +180,10 @@ graphqlClient(graphqlUrl, query)
 
 リクエスト一発で必要な情報を取ってこれます。
 
-既存のREST APIがあるのであれば、通常は Appolo sever を使って、REST API とフロントエンド（ウェブとは限りません。iOSやAndroidもあります）を仲介する BFF を建てて GraphQL を実現するのが定番ですが、今回は完全新規なため、せっかくなので Hasura を使います。
+既存のREST APIがあるのであれば、通常は Appolo server [^server]を使って、REST API とフロントエンド（ウェブとは限りません。iOSやAndroidもあります）を仲介する BFF（Backends For Frontends）を建てて GraphQL を実現するのが定番ですが、今回は完全新規なため、せっかくなので Hasura を使います。
+
+
+[^server]: https://www.apollographql.com/docs/apollo-server/
 
 Hasura は、PostgreSQLと密結合して、DBをいい感じにダイレクトに GraphQL とつなぎ込んでくれるフレームワークです。
 
@@ -191,7 +195,7 @@ Quick start with dockerというチュートリアルがあるので、これを
 
 https://hasura.io/docs/1.0/graphql/manual/getting-started/docker-simple.html
 
-Tech-book-portalのルートで問題なさそうなので、ここで動かします。
+作業フォルダのルートで動かして問題なさそうなので、ここで動かします。
 
 ```sh
 $ wget https://raw.githubusercontent.com/hasura/graphql-engine/stable/install-manifests/
@@ -212,8 +216,8 @@ http://localhost:8080/consoleを開くと、HasuraのConsoleが開きます。�
 ![Hasura Console](chap-mob-0704/hasuraconsole.png?scale=0.5)
 
 
-#### [column] Window10でDockerでたてたはずのConsoleが開けない
-Windows10(Home)でHasura.ioのDocker composeをやってみたところ、動いているはずなのにConsoleにアクセスできないという現象が発生しました。
+#### [column] Windows 10でDockerで立てたはずのConsoleが開けない
+Windows10（Home Edition）でHasura.ioのDocker composeをやってみたところ、動いているはずなのにConsoleにアクセスできないという現象が発生しました。
 
 Windows Firewallを切ってみましたがダメ。結果としては、Virtual Machineのポート変換ができていないということがわかりました。
 
@@ -311,16 +315,15 @@ ReactのチュートリアルにGraphQLでの呼び出しについての記載�
 
 https://hasura.io/learn/graphql/react/apollo-client/
 
-Set up a GraphQL client with Apolloという章があるので、ここをやってみます。
+ReactでGraphQLを使うには、Apolloというライブラリを使います。チュートリアルにSet up a GraphQL client with Apolloという章があるので、ここをやってみます。
 
 ```sh
 $ npm install apollo-boost @apollo/react-hooks graphql
 ```
 
-
 でApolloをインストールします。
 
-インストールしている間に、フロントとバックのつなぎ込み職人技が必要なくなりそうです。インフラと設計ができる人が一人いれば、フロントさえいれば完結する未来があるかもしれないねー、といった話が出てきます。きわめて大規模なものはともかく、スタートアップなら全く問題なく動くでしょうし、非常に簡単にできるように思います。
+インストールしている間に、「フロントとバックのつなぎ込み職人技が必要なくなりそう。」「インフラと設計ができる人が一人いれば、フロントさえいれば完結する未来があるかもしれないねー。」といった話が出てきます。きわめて大規模なものはともかく、スタートアップなら全く問題なく動くでしょうし、非常に簡単にできるように思います。
 
 src/pages/index.js に以下のコードを追加します。
 
@@ -339,7 +342,7 @@ src/pages/index.js に以下のコードを追加します。
  });
 };
 ```
-読み込みの部分は、profile.jsに外だししておきます。これは、類似の内容を他のページでも利用するのと、Indexが複雑になりすぎるのを避けるためです。
+読み込みの部分は、profile.jsに外だししておきます。これは、類似の内容を他のページでも利用するのと、index.jsが複雑になりすぎるのを避けるためです。
 
 ```js
 import gql from 'graphql-tag';
@@ -361,7 +364,7 @@ const Profiles = () => {
  if (loading) return <p>loading</p>
  // エラー時の表示
  if (error) return <p>{error.toString()}</p>
- //　成功してデータが帰ってきた時の表示
+ //　成功してデータが返って時の表示
  return <div>
    {
      data.profile.map(profile => <Profile key={profile.id} profile={profile}/>)
