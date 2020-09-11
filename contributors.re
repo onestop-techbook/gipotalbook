@@ -60,7 +60,7 @@ Podcast生やすお兄さんとして、複数のPodcastを掛け持ちして配
         \includegraphics[width=.75\linewidth]{images/contributors/FORTE.jpg}
     \end{minipage}
     \begin{minipage}{.89\linewidth}
-        FORTE(フォルテ) https://twitter.com/FORTEgp05\\
+        FORTE（フォルテ） https://twitter.com/FORTEgp05\\
         \end{minipage}
     \hspace{1ex}
 //}
@@ -129,7 +129,7 @@ BtoB向けSaaSのバックエンド開発をしているITエンジニア。Twit
         \end{minipage}
     \hspace{1ex}
 //}
-大阪在住。前職はSIerでしたが３年前に飽きて今はよくわからない仕事(敢えていうなら社内SEですね…)になりました。
+大阪在住。前職はSIerでしたが３年前に飽きて今はよくわからない仕事（敢えていうなら社内SEですね…）になりました。
 あと、近畿青年技術士懇親会 http://seigikon.jp って勉強会の幹事をさせていただいています。
 資格は10種以上もってますね。色々あったんですよ…　いやほんと。
 
