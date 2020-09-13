@@ -40,7 +40,7 @@ $ npm run dev
 
 [^yarn]: Facebookが公開したJavaScriptのパッケージマネージャ。npmと互換性がある。
 
-これで、http://localhots:3000にアクセスすると `create-next-app` が作成したデフォルト画面で、動いていることが確認できます。このとき表示されている画面は`/pages/index.js`で、このファイルを書き換えて、ファイルを保存すると、画面にすぐさま反映されます。動作確認のために雑に変更して反映されることを確認します。
+これで、http://localhots:3000にアクセスすると `create-next-app` が作成したデフォルト画面で、動いていることが確認できます。このとき表示されている画面は`/pages/index.js`で、このファイルを書き換えて保存すると、画面にすぐさま反映されます。動作確認のために雑に変更して反映されることを確認します。
 
 初期の`/pages`以下にあれこれ置くのはごちゃっとする問題があります。Next.js 9.1以後は、`/src` というモダンJavaScript界隈で当たり前となっているディレクトリ構造に対応してくれたので、`/src/pages` に移動してしまいましょう。
 
@@ -75,7 +75,7 @@ export default function Home() {
 }
 ```
 
-こうなるとCSS定義も消えたので、CSSを当てます。
+こうなるとCSS定義も消えたので、改めてCSSを当てます。
 
 Reactでよく使われるCSSライブラリはemotion（https://github.com/emotion-js/emotion）などが有名ですが、色々インストールしないといけなくて面倒なので、Next.js標準で使える CSS Modules を使ってみましょう。
 
@@ -116,7 +116,9 @@ export default function Home() {
 
 ここでコミットします。なんだかんだで1時間経過してしまいましたが、ここでなべくらさんのマシンにJS環境を作るというところまで完了したことになります。
 
-[32ed0ed8c5e8cb62cfc39abaef5c773f75c1b3cc](https://github.com/onestop-techbook/tech-book-portal/tree/32ed0ed8c5e8cb62cfc39abaef5c773f75c1b3cc)
+ * この時点でのGitHubコミットID : 32ed0ed8c5e8cb62cfc39abaef5c773f75c1b3cc [^github200704]
+
+[^github200704]: https://github.com/onestop-techbook/tech-book-portal/tree/32ed0ed8c5e8cb62cfc39abaef5c773f75c1b3cc
 
 ## Hasuraを組み込む
 目標の二つ目が、「DBを項目少な目でやってみる」です。適当なデータを引っ張ってくるのをテストします。Next.jsにHasuraをどうやって仕込むのかを調べながらやるのです。
