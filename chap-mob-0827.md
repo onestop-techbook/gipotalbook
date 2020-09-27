@@ -92,7 +92,7 @@ Hasura ConsoleにてApplyされていることを確認して、おしまいで�
 圧倒的進捗。
 
 
-ローカルで開発したときに、別の人が開発しようとしたときに、自動で引っ張ってくることができるようにしたいところです。AさんがDBのSchemaやMetadataを更新したときに、Bさんのローカルにも引っ張ってこれるようにしたいという意図です。
+残課題として一つ挙げておきます。ローカルで開発したときに、別の人が開発しようとしたときに、自動で引っ張ってくることができるようにしたいところです。AさんがDBのSchemaやMetadataを更新したときに、Bさんのローカルにも引っ張ってこれるようにしたいという意図です。追々実装、あるいは不要だったらそのままな可能性はありますが。
 
 ## Relation・ForeignKeyを設定する
 
@@ -106,13 +106,13 @@ Reference SchemaをPublicに、Reference Tableを　Circleitemsに、From’いd
 
 ユニークな相手に対して、やってみるということで、CircleItemsに対して設定してみます。CircleItemsを設定し、Modifyを選び、ForeignKeyを選択し、ReferenceSchemaをPublic、Reference Tableをgenreとします。From GenreID　To; IDとします。こんどはOKでした。
 
-同様に、Circle_Linkにも設定します。CircleLinkはCircleIDを参照しているので、ReferenceTableをCirclesを参照し、From　CircleID to IDとして、保存します。
+同様に、Circle_Linkにも設定します。CircleLinkはCircleIDを参照しているので、ReferenceTableをCirclesを参照し、From:CircleID To:idとして、保存します。
 
-Taggingの方にも、ReferenceTable〜tag　From tag-ID to idと設定し、もう一つ、ReferenceTable CircleItems　From item ID to IDを設定します。
+Taggingの方にも、ReferenceTable:tag　From:tag-ID To:idと設定し、もう一つ、ReferenceTable:CircleItems　From:itemID To:idを設定します。
 
-Relationshipを設定します。補完されるので、確認してSaveします。特に変更は必要なさそうです。逆方向も推測してやってくれるようです。これをやらないとGraphQLとして結合されません。なお、手早くやりすぎると、データがバグることがあるので注意しましょう。
+Foreign Keyを設定したら、次はRelationshipを設定します。Consoleの中にRelation Shipというタグがあるので、そこを開きます。先ほどのForeign Keyの設定をもとに関係が補完されるので、確認してSaveします。特に変更は必要なさそうです。逆方向も推測してやってくれるようです。これをやらないとGraphQLとして結合されません。なお、手早くやりすぎると、データがバグることがあるので注意しましょう、というコメントがありました。
 
-これでStatusをみてみると、ForeignKey追加が表示されています。
+これでStatusをみてみると、Foreign Key追加が表示されています。
 
 ```sh
 $ npm run hasura -- migrate sqush　--from 19xxx --name add foringkey
@@ -124,10 +124,10 @@ $ npm run hasura -- migrate apply --skip-execution --version 195xxxx
 以上で、ForeignKey・Relationの設定が完了のはずが、課題は残ってしましました。
 
 ## まとめ
-力尽きてしまいましたが、今日は終了です。
+本日のモブワークは、参加者の元気が力尽きてしまいましたが、残課題はあるものの一旦終了です。
 
 Hasuraのコマンドを全部覚えないといけないのは辛いですし、今ひとつ直感的で出ない動きも少なくありません。便利なのは便利ですが、ツラミはありますね。
 
-恒例のFun done learnをやって、今日は終了ですね。
+恒例のFun done learnをやって、今日は終了です。
 
-さて、この後、技術書典に向けて、各自の本の追い込みなどにより、１ヶ月ほど空いてしまいます。前の章で、9月12日の技術書典に向けてMVPを出すという目標も流れしまいます。期待してくれていたみなさま、すみません。（本章執筆：9月２８日）次の節目に向けて、実装を進めていきます（改めての決意！）｀s
+さて、この後、技術書典に向けて、各自の本の追い込みなどにより、1ヶ月ほど空いてしまいます。前の章で9月12日の技術書典に向けてMVPを出すという目標を設定しましたがこれは流れしまいます。だいたいみんなサークル主ですから、自分の本を優先するのは当然です。公開を期待してくれていたみなさま、すみません。（本章執筆：9月２８日）次の節目に向けて、実装を進めていきます（改めての決意！）
