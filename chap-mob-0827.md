@@ -18,9 +18,11 @@ $ npm run hasura console
 
 Table Nameをcirclesとし、id,name,description,tbf9_urlとカラムを追加していきます。型はintまたはtextを設定します。idは自動で増えてほしいので、Auto increment,Uniqueを入れておきます。Null許可なやつはチェックをつけましょう。この中ではDescriptionがそれにあたりますね。サークル説明は、ユーザーにとってはあったほうが良いのは当然ですし、省略する人はあまりいないと思いますが、なくても成立するのでNull許可です。逆にサークル名は空欄ではサービスとして成立しないのでNull不可です。このように考えて、テーブルを作っていきます。あとからでも変更はできるので、迷ったらとりあえずそれっぽい奴を選んでサクサク進めましょう。
 
-tbf9_urlだけは、JSでのアンダースコアの扱いが少々面倒なので、Edit画面からGraphQL Field Nameをアンダースコアのないものに書き換えておきます。
+tbf9_urlだけは、JavaScriptでのアンダースコアの扱いが微妙に不自然なので、Edit画面からGraphQL Field Nameをアンダースコアのないものに書き換えておきます。
 
-ひとまず他のものもの一通り追加していきます。先日のテーブル一覧上では大文字小文字、キャメルケースやスネークケースが若干混じっていることもあるのですが、とりあえずはそのまま入力を進めます。
+ひとまず他のものもの一通り追加していきます。先日のテーブル一覧嬢では大文字小文字、キャメルケースやスネークケースが若干混じっていることもあるのですが、とりあえずはそのまま入力を進めます。
+
+
 
 さて、入力項目の多いCircleItemsの入力の途中で、忘れていたものがありますが、順番の変更はできないのか？といった話が出ます。
 
@@ -28,11 +30,11 @@ tbf9_urlだけは、JSでのアンダースコアの扱いが少々面倒なの�
 
 ```sh 
 $ nmp run hasura migrate status
-　//更新したテーブルが一覧として出る
+　#更新したテーブルが一覧として出る
 $ nmp run hasura migrate squash --from 1598x //Error
 $ npm run hasura -- migrate sqush from 1598xxx
 $ nmp run hasura migrate status
-　// squshedと、元になったやつがNot Presentで表示される
+　# squshedと、元になったやつがNot Presentで表示される
 $ npm run hasura -- migrate apply -skip-execution --version 1598xxx //SquhedのIDを入れる
 ```
 
@@ -61,7 +63,6 @@ GitHub Actions内のhasura.ymlのCLIの内容を書き換えます。
         HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}
         HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
       run: hasura migrate apply --admin-secret $HASURA_GRAPHQL_ADMIN_SECRET --project hasura/ --endpoint $HASURA_ENDPOINT 
-
 ```
 
 Testで、ステータスを読むだけだったものを、Applyするコマンドに書き換えます。
@@ -83,7 +84,6 @@ Testで、ステータスを読むだけだったものを、Applyするコマ�
         HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}
         HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
       run: hasura metadata apply --admin-secret $HASURA_GRAPHQL_ADMIN_SECRET --project hasura/ --endpoint $HASURA_ENDPOINT 
-
 ```
 
 これで、Migrateを動かすと、Metadataも適用されることになります。
