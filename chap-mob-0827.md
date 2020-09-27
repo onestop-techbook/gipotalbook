@@ -94,7 +94,7 @@ Hasura ConsoleにてApplyされていることを確認して、おしまいで�
 
 ローカルで開発したときに、別の人が開発しようとしたときに、自動で引っ張ってくることができるようにしたいところです。AさんがDBのSchemaやMetadataを更新したときに、Bさんのローカルにも引っ張ってこれるようにしたいという意図です。
 
-# Relation・ForeignKeyを設定する
+## Relation・ForeignKeyを設定する
 
 ローカルのHasuraConsoleから、RelationShipというのを張る必要があるのですが、Foreign　Keyで貼っておけば良さそうですが、一旦やってみましょう。
 
