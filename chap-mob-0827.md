@@ -26,6 +26,7 @@ tbf9_urlだけは、JSでのアンダースコアの扱いが少々面倒なの�
 
 あらかた入力が終わったところで、コミットしてPushします。好みによりますが、MigrationのSQLはひとまとめにすることができるので、Squashコマンドでまとめます。
 
+```sh 
 $ nmp run hasura migrate status
 　//更新したテーブルが一覧として出る
 $ nmp run hasura migrate squash --from 1598x //Error
@@ -33,6 +34,7 @@ $ npm run hasura -- migrate sqush from 1598xxx
 $ nmp run hasura migrate status
 　// squshedと、元になったやつがNot Presentで表示される
 $ npm run hasura -- migrate apply -skip-execution --version 1598xxx //SquhedのIDを入れる
+```
 
 Unix系のコマンドでは、--の後はオプションとして解析しないで、というハックがあるようで、できました
 
@@ -45,14 +47,14 @@ Unix系のコマンドでは、--の後はオプションとして解析しな�
 GitHub Actions内のhasura.ymlのCLIの内容を書き換えます。
 
 ```js hasura.yml 
-変更前
+//変更前
     # Install CLI Test
     - name: Hasura Test
       env: 
         HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}
         HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
       run: hasura migrate status --admin-secret $HASURA_GRAPHQL_ADMIN_SECRET --project hasura/ --endpoint $HASURA_ENDPOINT 
-変更後
+//変更後
     # Install CLI Test
     - name: Hasura Migrate
       env: 
@@ -121,7 +123,7 @@ $ npm run hasura -- migrate apply --skip-execution --version 195xxxx
 コミットして終了、と思いきや、GitHub Actionsがコケてしまいます。
 以上で、ForeignKey・Relationの設定が完了のはずが、課題は残ってしましました。
 
-##　まとめ
+## まとめ
 力尽きてしまいましたが、今日は終了です。
 
 Hasuraのコマンドを全部覚えないといけないのは辛いですし、今ひとつ直感的で出ない動きも少なくありません。便利なのは便利ですが、ツラミはありますね。
