@@ -35,7 +35,7 @@ $ nmp run hasura migrate squash --from 1598x //Error
 $ npm run hasura -- migrate sqush from 1598xxx
 $ nmp run hasura migrate status
 　# squshedと、元になったやつがNot Presentで表示される
-$ npm run hasura -- migrate apply -skip-execution --version 1598xxx //SquhedのIDを入れる
+$ npm run hasura -- migrate apply -skip-execution --version 1598xxx //SqushのIDを入れる
 ```
 
 Unix系のコマンドでは、--の後はオプションとして解析しないで、というハックがあるようで、できました
@@ -55,14 +55,16 @@ GitHub Actions内のhasura.ymlのCLIの内容を書き換えます。
       env: 
         HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}
         HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
-      run: hasura migrate status --admin-secret $HASURA_GRAPHQL_ADMIN_SECRET --project hasura/ --endpoint $HASURA_ENDPOINT 
+      run: hasura migrate status --admin-secret $HASURA_GRAPHQL_ADMIN_SECRET 
+      --project hasura/ --endpoint $HASURA_ENDPOINT 
 //変更後
     # Install CLI Test
     - name: Hasura Migrate
       env: 
         HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}
         HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
-      run: hasura migrate apply --admin-secret $HASURA_GRAPHQL_ADMIN_SECRET --project hasura/ --endpoint $HASURA_ENDPOINT 
+      run: hasura migrate apply --admin-secret $HASURA_GRAPHQL_ADMIN_SECRET 
+      --project hasura/ --endpoint $HASURA_ENDPOINT 
 ```
 
 Testで、ステータスを読むだけだったものを、Applyするコマンドに書き換えます。
@@ -83,28 +85,29 @@ Testで、ステータスを読むだけだったものを、Applyするコマ�
       env: 
         HASURA_GRAPHQL_ADMIN_SECRET: ${{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}
         HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
-      run: hasura metadata apply --admin-secret $HASURA_GRAPHQL_ADMIN_SECRET --project hasura/ --endpoint $HASURA_ENDPOINT 
+      run: hasura metadata apply --admin-secret $HASURA_GRAPHQL_ADMIN_SECRET 
+      --project hasura/ --endpoint $HASURA_ENDPOINT 
 ```
 
-これで、Migrateを動かすと、Metadataも適用されることになります。
+これで、Migrateを動かすと、Metadataも移行・適用されることになります。
 
 Hasura ConsoleにてApplyされていることを確認して、おしまいです。
 圧倒的進捗。
 
 
-残課題として一つ挙げておきます。ローカルで開発したときに、別の人が開発しようとしたときに、自動で引っ張ってくることができるようにしたいところです。AさんがDBのSchemaやMetadataを更新したときに、Bさんのローカルにも引っ張ってこれるようにしたいという意図です。追々実装、あるいは不要だったらそのままな可能性はありますが。
+残課題として一つ挙げておきます。ローカルで開発したときに、別の人が開発しようとしたときに、自動で引っ張ってくることができるようにしたいところです。例えばAさんがDBのSchemaやMetadataを更新したときに、Bさんのローカルにもそのデータを引っ張ってこれるようにしたいという意図です。おいおい実装、あるいは不要だったらそのままな可能性はありますが、今後の実装のなかで調査確認します。
 
 ## Relation・ForeignKeyを設定する
 
-ローカルのHasuraConsoleから、RelationShipというのを張る必要があるのですが、Foreign　Keyで貼っておけば良さそうですが、一旦やってみましょう。
+二つのテーブル間の関係を参照するために、RelationShipというのを張る必要があリます。例えば「本」の情報として、ジ「ジャンル」を参照する必要がありますが、これは別テーブルで参照しています。ローカルのHasuraConsoleから、Foreign　Keyで貼っておけば良さそうですが、一旦やってみましょう。
 
-ModifyでForeignKeyをせっていすればよいのでしょうか？手動で張るのはめんどくさそうなので、一旦やってみましょう。
+ModifyでForeignKeyを設定すればよいのでしょうか？手動で張るのはめんどくさそうなので、一旦やってみましょう。
 
 Itemsは確実にジャンルに紐付けされますので、これにForeignKeyを設定します。
 
-Reference SchemaをPublicに、Reference Tableを　Circleitemsに、From’いd　To；GenreIDを設定しますが、ユニーク制約がついていないのでダメ、という旨のエラーが出ます。逆方向なのでダメなのかも？ということで、逆にしてみましょう。
+Reference SchemaをPublicに、Reference TableをCircleitemsに、From:id　To:GenreIDを設定します。ところが、ユニーク制約がついていないのでダメ、という旨のエラーが出ます。逆方向なのでダメなのかも？ということで、逆にしてみましょう。
 
-ユニークな相手に対して、やってみるということで、CircleItemsに対して設定してみます。CircleItemsを設定し、Modifyを選び、ForeignKeyを選択し、ReferenceSchemaをPublic、Reference Tableをgenreとします。From GenreID　To; IDとします。こんどはOKでした。
+ユニークな相手に対してやってみるということで、CircleItemsに対して設定してみます。CircleItemsを設定し、Modifyを選び、ForeignKeyを選択し、ReferenceSchemaをPublic、Reference Tableをgenreとします。From:GenreID　To:IDとします。こんどはOKでした。
 
 同様に、Circle_Linkにも設定します。CircleLinkはCircleIDを参照しているので、ReferenceTableをCirclesを参照し、From:CircleID To:idとして、保存します。
 
@@ -126,8 +129,10 @@ $ npm run hasura -- migrate apply --skip-execution --version 195xxxx
 ## まとめ
 本日のモブワークは、参加者の元気が力尽きてしまいましたが、残課題はあるものの一旦終了です。
 
-Hasuraのコマンドを全部覚えないといけないのは辛いですし、今ひとつ直感的で出ない動きも少なくありません。便利なのは便利ですが、ツラミはありますね。
+Hasuraのコマンドを全部覚えないといけないのは辛いですし、今ひとつ直感的でない動きも少なくありません。便利なのは便利ですが、ツラミはありますね。
 
 恒例のFun done learnをやって、今日は終了です。
+
+![8月27日のFun Done Learn](chap-mob-0827/0827fundonelearn.png?scale=0.8)
 
 さて、この後、技術書典に向けて、各自の本の追い込みなどにより、1ヶ月ほど空いてしまいます。前の章で9月12日の技術書典に向けてMVPを出すという目標を設定しましたがこれは流れしまいます。だいたいみんなサークル主ですから、自分の本を優先するのは当然です。公開を期待してくれていたみなさま、すみません。（本章執筆：9月２８日）次の節目に向けて、実装を進めていきます（改めての決意！）
