@@ -18,31 +18,29 @@ $ npm run hasura console
 
 Table Nameをcirclesとし、id,name,description,tbf9_urlとカラムを追加していきます。型はintまたはtextを設定します。idは自動で増えてほしいので、Auto increment,Uniqueを入れておきます。Null許可なやつはチェックをつけましょう。この中ではDescriptionがそれにあたりますね。サークル説明は、ユーザーにとってはあったほうが良いのは当然ですし、省略する人はあまりいないと思いますが、なくても成立するのでNull許可です。逆にサークル名は空欄ではサービスとして成立しないのでNull不可です。このように考えて、テーブルを作っていきます。あとからでも変更はできるので、迷ったらとりあえずそれっぽい奴を選んでサクサク進めましょう。
 
-tbf9_urlだけは、JavaScriptでのアンダースコアの扱いが微妙に不自然なので、Edit画面からGraphQL Field Nameをアンダースコアのないものに書き換えておきます。
+tbf9_urlだけは、Java Scriptでのアンダースコアの扱いが微妙に不自然なので、Edit画面からGraphQL Field Nameをアンダースコアのないものに書き換えておきます。
 
 ひとまず他のものもの一通り追加していきます。先日のテーブル一覧嬢では大文字小文字、キャメルケースやスネークケースが若干混じっていることもあるのですが、とりあえずはそのまま入力を進めます。
 
+さて、入力項目の多いCircleItemsの入力の途中で、忘れていたものがありました。追加するとかは想定しやすいシチュエーションですが、「順番の変更はできないのか？」といった話が出ます。できないってことはなさそうですが、一方で順番変更できそうなボタンとかもありません。いったんそのままにしましょう。
 
-
-さて、入力項目の多いCircleItemsの入力の途中で、忘れていたものがありますが、順番の変更はできないのか？といった話が出ます。
-
-あらかた入力が終わったところで、コミットしてPushします。好みによりますが、MigrationのSQLはひとまとめにすることができるので、Squashコマンドでまとめます。
+ローカルのHasura Consoleであらかた入力が終わったところで、コミットしてPushします。好みによりますが、MigrationのSQLはひとまとめにすることができるので、Squashコマンドでまとめます。
 
 ```sh 
 $ nmp run hasura migrate status
 　#更新したテーブルが一覧として出る
 $ nmp run hasura migrate squash --from 1598x //Error
-$ npm run hasura -- migrate sqush from 1598xxx
+$ npm run hasura -- migrate sqush --from 1598xxx
 $ nmp run hasura migrate status
 　# squshedと、元になったやつがNot Presentで表示される
-$ npm run hasura -- migrate apply -skip-execution --version 1598xxx //SqushのIDを入れる
+$ npm run hasura -- migrate apply --skip-execution --version 1598xxx //SqushedのIDを入れる
 ```
 
 Unix系のコマンドでは、--の後はオプションとして解析しないで、というハックがあるようで、できました
 
 普通ならデータベースの操作からMigrationのSchemaが生成されるのですが、サーバー側に反映されていないので、Applyコマンドでサーバー側に反映させます。
 
-これをGitHubにコミットすると、GItHub Actionsが走って、Heroku上のHasuraに反映されます。コマンドが走ったことをかくにんしておきます。
+これをGitHubにコミットすると、GItHub Actionsが走って、Heroku上のHasuraに反映されます。コマンドが走ったことを確認しておきます。
 
 前回は、テストだったので、取り込みまできちんとやったものではなかったので、GitHub actionsを更新しておきます。
 
@@ -115,10 +113,10 @@ Taggingの方にも、ReferenceTable:tag　From:tag-ID To:idと設定し、も�
 
 Foreign Keyを設定したら、次はRelationshipを設定します。Consoleの中にRelation Shipというタグがあるので、そこを開きます。先ほどのForeign Keyの設定をもとに関係が補完されるので、確認してSaveします。特に変更は必要なさそうです。逆方向も推測してやってくれるようです。これをやらないとGraphQLとして結合されません。なお、手早くやりすぎると、データがバグることがあるので注意しましょう、というコメントがありました。
 
-これでStatusをみてみると、Foreign Key追加が表示されています。
+これでStatusをみてみると、Foreign Key追加が表示されています。名前をつけてsqushしておきましょう。今回はadd_forignkeyという名前を付けておきます。
 
 ```sh
-$ npm run hasura -- migrate sqush　--from 19xxx --name add foringkey
+$ npm run hasura -- migrate sqush　--from 19xxx --name add_forignkey
 $ npm rum hasura --status //Sqush確認
 $ npm run hasura -- migrate apply --skip-execution --version 195xxxx
 ```
